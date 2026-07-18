@@ -1,4 +1,4 @@
-﻿// === HAMBURGER MENU ===
+// === HAMBURGER MENU ===
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
@@ -45,22 +45,52 @@ if ('IntersectionObserver' in window) {
 // === CONTACT FORM ===
 const form = document.getElementById('contact-form');
 if (form) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const submitButton = form.querySelector('button[type="submit"]');
     if (!submitButton) return;
 
     const originalHtml = submitButton.innerHTML;
-    submitButton.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message Sent!';
-    submitButton.style.background = '#10b981';
+
+    // Collect form data
+    const formData = {
+      name: form.querySelector('#form-name')?.value || '',
+      email: form.querySelector('#form-email')?.value || '',
+      subject: form.querySelector('#form-subject')?.value || '',
+      message: form.querySelector('#form-message')?.value || ''
+    };
+
+    // Show sending state
+    submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
     submitButton.disabled = true;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        submitButton.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message Sent!';
+        submitButton.style.background = '#10b981';
+        form.reset();
+      } else {
+        submitButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Failed to Send';
+        submitButton.style.background = '#ef4444';
+      }
+    } catch (err) {
+      submitButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Connection Error';
+      submitButton.style.background = '#ef4444';
+    }
 
     setTimeout(() => {
       submitButton.innerHTML = originalHtml;
       submitButton.style.background = '';
       submitButton.disabled = false;
-      form.reset();
     }, 3000);
   });
 }
