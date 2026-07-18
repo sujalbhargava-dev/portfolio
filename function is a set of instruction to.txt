@@ -1,8 +1,0 @@
-function is a set of instruction to perform a specific task .
-type of function.
-2 type of function
-build in and predefine
-take nothing and return nothing
-take something and return nothing
-take nothing return  some thing
-take something return something
