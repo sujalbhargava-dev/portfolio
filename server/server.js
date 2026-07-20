@@ -2,10 +2,35 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const bcrypt = require('bcrypt');
+const db = require('./database');
+
+const cors = require('cors');
+const multer = require('multer');
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 const MESSAGES_FILE = path.join(__dirname, '..', 'messages.txt');
+
+// Configure multer to save uploads as profile.jpg in the main portfolio folder
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, '..'));
+    },
+    filename: (req, file, cb) => {
+      cb(null, 'profile.jpg'); // Always overwrite the same file
+    }
+  }),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only images are allowed!'), false);
+    }
+  }
+});
 
 // Parse JSON body
 app.use(express.json());
@@ -21,29 +46,98 @@ app.post('/api/contact', (req, res) => {
     return res.status(400).json({ error: 'All fields are required.' });
   }
 
-  const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-  const separator = '='.repeat(50);
-
-  const entry = `${separator}
-📩 NEW MESSAGE
-${separator}
-Date:    ${timestamp}
-Name:    ${name}
-Email:   ${email}
-Subject: ${subject}
-
-Message:
-${message}
-
-`;
-
-  fs.appendFile(MESSAGES_FILE, entry, 'utf8', (err) => {
+  const query = `INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)`;
+  db.run(query, [name, email, subject, message], function(err) {
     if (err) {
-      console.error('Error saving message:', err);
+      console.error('Error saving message to DB:', err);
       return res.status(500).json({ error: 'Failed to save message.' });
     }
-    console.log(`✅ New message from ${name} (${email})`);
+    console.log(`✅ New message from ${name} (${email}) saved to DB`);
     res.json({ success: true, message: 'Message saved successfully!' });
+  });
+});
+
+// API endpoint for uploading profile photo
+app.post('/api/upload-profile', upload.single('profilePhoto'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'Please select an image file.' });
+  }
+  res.json({ success: true, message: 'Profile photo updated successfully!' });
+});
+
+// API endpoint for registration
+app.post('/api/register', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required.' });
+  }
+
+  db.get('SELECT id FROM users WHERE email = ?', [email], (err, row) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ error: 'Internal server error.' });
+    }
+    if (row) {
+      return res.status(400).json({ error: 'User already exists.' });
+    }
+
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) {
+        console.error('Hash error:', err);
+        return res.status(500).json({ error: 'Internal server error.' });
+      }
+
+      db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, hash], function(err) {
+        if (err) {
+          console.error('Insert error:', err);
+          return res.status(500).json({ error: 'Internal server error.' });
+        }
+        res.json({ success: true, message: 'Account created successfully' });
+      });
+    });
+  });
+});
+
+// API endpoint for login
+app.post('/api/login', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required.' });
+  }
+
+  db.get('SELECT * FROM users WHERE email = ?', [email], (err, user) => {
+    if (err) {
+      console.error('Database error during login:', err);
+      return res.status(500).json({ error: 'Internal server error.' });
+    }
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password.' });
+    }
+
+    bcrypt.compare(password, user.password, (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Internal server error.' });
+      }
+
+      if (result) {
+        const isAdmin = (email === 'admin@demo.com');
+        res.json({ success: true, message: 'Login successful', isAdmin });
+      } else {
+        res.status(401).json({ error: 'Invalid email or password.' });
+      }
+    });
+  });
+});
+
+// API endpoint to fetch all messages (for admin dashboard)
+app.get('/api/messages', (req, res) => {
+  db.all('SELECT * FROM contacts ORDER BY timestamp DESC', [], (err, rows) => {
+    if (err) {
+      console.error('Database error fetching messages:', err);
+      return res.status(500).json({ error: 'Internal server error.' });
+    }
+    res.json({ success: true, messages: rows });
   });
 });
 

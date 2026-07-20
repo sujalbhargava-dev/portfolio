@@ -1,3 +1,25 @@
+// === AUTHENTICATION CHECK ===
+const pathname = window.location.pathname;
+const isLoginPage = pathname.endsWith('login.html');
+const isRegisterPage = pathname.endsWith('register.html');
+const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+
+if (!isLoggedIn && !isLoginPage && !isRegisterPage) {
+  window.location.href = 'login.html';
+}
+
+// === ADMIN NAVIGATION ===
+// Dynamically add the Admin link to the navigation bar if the user is an admin
+if (sessionStorage.getItem('isAdmin') === 'true') {
+  const navLinks = document.getElementById('nav-links');
+  if (navLinks) {
+    const adminLink = document.createElement('li');
+    adminLink.innerHTML = '<a href="admin.html"><i class="fa-solid fa-lock" style="margin-right: 6px;"></i>Admin</a>';
+    // Insert it at the very beginning of the list
+    navLinks.insertBefore(adminLink, navLinks.firstChild);
+  }
+}
+
 // === HAMBURGER MENU ===
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
@@ -66,7 +88,7 @@ if (form) {
     submitButton.disabled = true;
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('http://localhost:3000/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

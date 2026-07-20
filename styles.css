@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    SUJAL BHARGAVA PORTFOLIO — GLOBAL DESIGN SYSTEM
    ============================================================ */
 
@@ -227,32 +227,42 @@ nav.scrolled {
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+    z-index: 1001;
   }
 
   .nav-links {
-    display: none;
     position: fixed;
-    top: var(--nav-height);
-    left: 0;
+    top: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.97);
+    width: 260px;
+    height: 100vh;
+    background: var(--bg);
     backdrop-filter: blur(24px);
-    padding: 12px 16px 20px;
+    padding: 90px 24px 32px;
     flex-direction: column;
     align-items: stretch;
-    gap: 4px;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    gap: 8px;
+    border-left: 1px solid var(--border);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav-links.open {
-    display: flex;
+    transform: translateX(0);
   }
 
   .nav-links a {
-    text-align: center;
-    padding: 12px;
-    font-size: 0.9rem;
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: var(--bg-secondary);
   }
 }
 

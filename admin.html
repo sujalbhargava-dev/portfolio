@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — Sujal Bhargava</title>
+    <meta name="description" content="Admin dashboard to view messages." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-logout:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .message-sender {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .message-email {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .message-email:hover {
+            text-decoration: underline;
+        }
+
+        .message-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .message-subject {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .message-body {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            background: var(--bg);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            color: var(--border-hover);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">SB<span>.</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html" class="active">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page" style="padding-top: 120px; padding-bottom: 80px; min-height: calc(100vh - 80px);">
+        <div class="section" style="max-width: 800px; margin: 0 auto;">
+
+            <div class="admin-header fade-up">
+                <div>
+                    <h1 class="section-title" style="margin-bottom: 4px;">Admin Dashboard</h1>
+                    <p class="section-desc">View and manage your contact messages.</p>
+                </div>
+                <button id="logout-btn" class="btn-logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </button>
+            </div>
+
+            <!-- Profile Settings Card -->
+            <div class="message-card fade-up" style="margin-bottom: 40px; border-color: var(--accent-border);">
+                <div class="message-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                    <div class="message-subject"><i class="fa-solid fa-camera" style="margin-right: 8px;"></i>Profile Photo Settings</div>
+                </div>
+                <div style="margin-top: 16px;">
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px;">Upload a new profile photo to instantly display on your homepage. (JPG or PNG)</p>
+                    <form id="upload-form" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required style="
+                            padding: 10px;
+                            background: var(--bg-secondary);
+                            border: 1px dashed var(--border);
+                            border-radius: 6px;
+                            color: var(--text-primary);
+                            flex: 1;
+                        ">
+                        <button type="submit" id="upload-btn" class="btn-logout" style="color: var(--accent); border-color: var(--accent); background: rgba(79, 70, 229, 0.1);">
+                            <i class="fa-solid fa-upload"></i> Upload
+                        </button>
+                    </form>
+                    <div id="upload-status" style="margin-top: 12px; font-size: 0.9rem; font-weight: 500;"></div>
+                </div>
+            </div>
+
+            <!-- Contact Messages -->
+            <h2 class="section-title fade-up" style="font-size: 1.4rem; margin-bottom: 24px;">Inbox</h2>
+            <div id="messages-wrapper" class="messages-container fade-up" style="transition-delay: 100ms;">
+                <div class="loading">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                    <p style="margin-top: 10px;">Loading messages...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Designed &amp; Built by <a href="index.html">Sujal Bhargava</a> &nbsp;&middot;&nbsp; &copy; 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Double check auth explicitly on this page just in case
+        if (sessionStorage.getItem('isLoggedIn') !== 'true' || sessionStorage.getItem('isAdmin') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Handle Logout
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        });
+
+        // Handle Photo Upload
+        const uploadForm = document.getElementById('upload-form');
+        if (uploadForm) {
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const fileInput = document.getElementById('profilePhoto');
+                const statusDiv = document.getElementById('upload-status');
+                const btn = document.getElementById('upload-btn');
+                
+                if (!fileInput.files[0]) return;
+                
+                const formData = new FormData();
+                formData.append('profilePhoto', fileInput.files[0]);
+                
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+                btn.disabled = true;
+                statusDiv.innerText = '';
+                
+                try {
+                    const response = await fetch('http://localhost:3000/api/upload-profile', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    
+                    if (response.ok && data.success) {
+                        statusDiv.style.color = '#22c55e';
+                        statusDiv.innerText = data.message + ' Go back to the Home page to see it!';
+                        uploadForm.reset();
+                    } else {
+                        statusDiv.style.color = '#ef4444';
+                        statusDiv.innerText = data.error || 'Upload failed.';
+                    }
+                } catch (err) {
+                    statusDiv.style.color = '#ef4444';
+                    statusDiv.innerText = 'Server connection failed.';
+                }
+                
+                btn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
+                btn.disabled = false;
+            });
+        }
+
+        // Fetch Messages
+        async function fetchMessages() {
+            const wrapper = document.getElementById('messages-wrapper');
+            try {
+                const response = await fetch('http://localhost:3000/api/messages');
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    const messages = data.messages;
+
+                    if (messages.length === 0) {
+                        wrapper.innerHTML = `
+                            <div class="empty-state">
+                                <i class="fa-regular fa-envelope-open"></i>
+                                <h3>No messages yet</h3>
+                                <p>When someone contacts you, their message will appear here.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    let html = '';
+                    messages.forEach(msg => {
+                        const date = new Date(msg.timestamp).toLocaleString('en-IN', {
+                            timeZone: 'Asia/Kolkata',
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                        });
+
+                        html += `
+                            <div class="message-card">
+                                <div class="message-header">
+                                    <div>
+                                        <div class="message-sender">${escapeHTML(msg.name)}</div>
+                                        <a href="mailto:${escapeHTML(msg.email)}" class="message-email">${escapeHTML(msg.email)}</a>
+                                    </div>
+                                    <div class="message-date">${date}</div>
+                                </div>
+                                <div class="message-subject">Subject: ${escapeHTML(msg.subject)}</div>
+                                <div class="message-body">${escapeHTML(msg.message)}</div>
+                            </div>
+                        `;
+                    });
+
+                    wrapper.innerHTML = html;
+                } else {
+                    wrapper.innerHTML = `<div class="empty-state"><i class="fa-solid fa-circle-exclamation"></i><h3>Failed to load messages</h3><p>${data.error || 'Unknown error'}</p></div>`;
+                }
+            } catch (err) {
+                wrapper.innerHTML = `<div class="empty-state"><i class="fa-solid fa-link-slash"></i><h3>Connection Error</h3><p>Could not connect to the backend server.</p></div>`;
+            }
+        }
+
+        // Helper to prevent XSS
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g,
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        // Load messages on boot
+        fetchMessages();
+    </script>
+</body>
+
+</html>
