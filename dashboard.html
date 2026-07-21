@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — Sujal Bhargava</title>
+    <meta name="description" content="Admin dashboard to view messages and metrics." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dash-sidebar">
+            <a href="index.html" class="dash-logo">
+                <i class="fa-solid fa-code"></i> Sujal.
+            </a>
+
+            <div class="dash-nav">
+                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; padding-left: 16px;">Core</div>
+                <a href="dashboard.html" class="dash-nav-item active">
+                    <i class="fa-solid fa-border-all"></i> Dashboard
+                </a>
+                <a href="#messages-section" class="dash-nav-item">
+                    <i class="fa-regular fa-message"></i> Messages
+                </a>
+                <a href="admin.html" class="dash-nav-item">
+                    <i class="fa-solid fa-inbox"></i> Classic Admin
+                </a>
+
+                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin: 20px 0 8px; padding-left: 16px;">Portfolio Pages</div>
+                <a href="index.html" class="dash-nav-item">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="about.html" class="dash-nav-item">
+                    <i class="fa-regular fa-address-card"></i> About
+                </a>
+                <a href="education.html" class="dash-nav-item">
+                    <i class="fa-solid fa-graduation-cap"></i> Education
+                </a>
+                <a href="skills.html" class="dash-nav-item">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Skills
+                </a>
+                <a href="projects.html" class="dash-nav-item">
+                    <i class="fa-solid fa-briefcase"></i> Projects
+                </a>
+                <a href="contact.html" class="dash-nav-item">
+                    <i class="fa-regular fa-envelope"></i> Contact
+                </a>
+
+                <a href="#" id="logout-btn" class="dash-nav-item" style="margin-top: auto; border-top: 1px solid var(--border); border-radius: 0; padding-top: 20px;">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dash-main">
+            <!-- Header -->
+            <header class="dash-header">
+                <h1 class="dash-welcome">Welcome back, Sujal 👋</h1>
+                <div class="dash-header-right">
+                    <div class="dash-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search analytics..." />
+                    </div>
+                    
+                    <!-- Interactive Profile Photo Upload -->
+                    <div style="position: relative; display: inline-block;">
+                        <label for="headerProfilePhoto" style="cursor: pointer; display: block; position: relative;" title="Upload new profile picture" onmouseover="this.querySelector('.avatar-overlay').style.opacity=1; this.querySelector('.dash-profile').style.opacity=0.7;" onmouseout="this.querySelector('.avatar-overlay').style.opacity=0; this.querySelector('.dash-profile').style.opacity=1;">
+                            <img src="profile.jpg" alt="Profile" id="header-profile-img" class="dash-profile" style="transition: opacity 0.2s;" onerror="this.src='https://ui-avatars.com/api/?name=Sujal+Bhargava&background=4f46e5&color=fff'">
+                            <div class="avatar-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.2s; color: var(--accent);">
+                                <i class="fa-solid fa-camera" style="font-size: 1.2rem; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); color: white;"></i>
+                            </div>
+                        </label>
+                        <input type="file" id="headerProfilePhoto" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Top Cards -->
+            <div class="dash-grid" style="grid-template-columns: 2fr 1fr;">
+                
+                <div>
+                    <div class="dash-card-header">
+                        <h2 class="dash-card-title">Recent Updates</h2>
+                        <a href="#" class="dash-card-action">View All <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="mini-cards-row">
+                        <!-- Mini Card 1 -->
+                        <div class="mini-card">
+                            <div class="mini-card-icon icon-bg-orange">
+                                <i class="fa-solid fa-pen-nib"></i>
+                            </div>
+                            <h3 class="mini-card-title">UI/UX Design</h3>
+                            <p class="mini-card-subtitle">Portfolio V2</p>
+                            <div class="mini-card-footer">
+                                <span>Status</span>
+                                <span class="badge badge-green">Live</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Card 2 -->
+                        <div class="mini-card">
+                            <div class="mini-card-icon icon-bg-green">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="mini-card-title">Backend API</h3>
+                            <p class="mini-card-subtitle">Node.js Auth</p>
+                            <div class="mini-card-footer">
+                                <span>Status</span>
+                                <span class="badge badge-green">Live</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Card 3 -->
+                        <div class="mini-card">
+                            <div class="mini-card-icon icon-bg-purple">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <h3 class="mini-card-title">Mobile App</h3>
+                            <p class="mini-card-subtitle">React Native</p>
+                            <div class="mini-card-footer">
+                                <span>Status</span>
+                                <span class="badge badge-purple">Planning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Row (Chart + Schedule) -->
+                    <div class="grid-col-2">
+                        <!-- Chart Card -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h2 class="dash-card-title">Login Activity</h2>
+                                <span class="badge badge-green" id="login-activity-badge">Tracking <i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <div class="chart-mockup" id="login-chart-bars">
+                                <!-- Generated by JS -->
+                            </div>
+                            <div class="chart-labels" id="login-chart-labels">
+                                <!-- Generated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Schedule Card -->
+                        <div class="dash-card">
+                            <div class="dash-card-header">
+                                <h2 class="dash-card-title">Daily Schedule</h2>
+                            </div>
+                            <div class="dash-list">
+                                <div class="dash-list-item" style="border: none; padding: 0; background: transparent;">
+                                    <div class="dash-list-icon icon-bg-orange">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </div>
+                                    <div class="dash-list-content">
+                                        <h4 class="dash-list-title">Design System</h4>
+                                        <p class="dash-list-desc">UI Polish</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                </div>
+                                <div class="dash-list-item" style="border: none; padding: 0; background: transparent;">
+                                    <div class="dash-list-icon icon-bg-purple">
+                                        <i class="fa-solid fa-font"></i>
+                                    </div>
+                                    <div class="dash-list-content">
+                                        <h4 class="dash-list-title">Typography</h4>
+                                        <p class="dash-list-desc">Font updates</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                </div>
+                                <div class="dash-list-item" style="border: none; padding: 0; background: transparent;">
+                                    <div class="dash-list-icon icon-bg-green">
+                                        <i class="fa-solid fa-palette"></i>
+                                    </div>
+                                    <div class="dash-list-content">
+                                        <h4 class="dash-list-title">Color Style</h4>
+                                        <p class="dash-list-desc">Theme tweaks</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Premium + Calendar) -->
+                <div>
+                    <!-- Calendar (Premium Style) -->
+                    <div class="upload-card" style="margin-bottom: 24px;">
+                        <div class="upload-card-logo" style="justify-content: space-between; margin-bottom: 20px;">
+                            <i class="fa-solid fa-chevron-left" id="prev-month" style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
+                            <span id="calendar-month-year" style="font-size: 1.1rem; font-weight: 700;">July, 2026</span>
+                            <i class="fa-solid fa-chevron-right" id="next-month" style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
+                        </div>
+                        <div class="dash-calendar">
+                            <div class="cal-grid" id="calendar-grid" style="color: white; font-weight: 500;">
+                                <!-- Weekday headers (static) -->
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">S</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">M</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">T</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">W</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">T</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">F</div>
+                                <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">S</div>
+                                
+                                <!-- Dates generated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- 3 Main Holidays -->
+                        <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; position: relative; z-index: 1;">
+                            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; letter-spacing: 0.05em;">Upcoming Holidays</div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">🇮🇳</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.9rem; font-weight: 600; color: white;">Independence Day</div>
+                                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">August 15, 2026</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">🕊️</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.9rem; font-weight: 600; color: white;">Gandhi Jayanti</div>
+                                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">October 2, 2026</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">🪔</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 0.9rem; font-weight: 600; color: white;">Diwali</div>
+                                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">November 8, 2026</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fa-regular fa-calendar-days" style="position: absolute; bottom: -20px; right: -20px; font-size: 10rem; opacity: 0.05;"></i>
+                    </div>
+
+                    <!-- Upload Photo card removed since functionality is now in header -->
+                </div>
+
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="dash-grid" style="grid-template-columns: 1fr 2.5fr;">
+                
+                <!-- Active Projects -->
+                <div class="dash-card">
+                    <div class="dash-card-header">
+                        <h2 class="dash-card-title">Projects You're Building</h2>
+                        <a href="#" class="dash-card-action">Active <i class="fa-solid fa-chevron-down"></i></a>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="mini-card-icon icon-bg-purple" style="margin: 0;">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.95rem;">Portfolio Dashboard</h4>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg" style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;" onerror="this.style.display='none'">Sujal Bhargava</p>
+                        </div>
+                        <div style="text-align: right; width: 100px;">
+                            <div class="progress-header">
+                                <span style="color: var(--text-muted);">Completion</span>
+                            </div>
+                        </div>
+                        <div class="circular-progress" style="background: conic-gradient(var(--accent) 0% 90%, var(--border) 90% 100%);">
+                            <span>90%</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-item" style="border: none; padding: 0;">
+                        <div class="mini-card-icon icon-bg-orange" style="margin: 0;">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <div class="progress-info">
+                            <h4 style="margin: 0 0 4px 0; font-size: 0.95rem;">Node.js API</h4>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg" style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;" onerror="this.style.display='none'">Sujal Bhargava</p>
+                        </div>
+                        <div style="text-align: right; width: 100px;">
+                            <div class="progress-header">
+                                <span style="color: var(--text-muted);">Completion</span>
+                            </div>
+                        </div>
+                        <div class="circular-progress" style="background: conic-gradient(var(--success) 0% 100%, var(--border) 100% 100%);">
+                            <span>100%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages / Assignments -->
+                <div class="dash-card" id="messages-section">
+                    <div class="dash-card-header">
+                        <h2 class="dash-card-title">Recent Messages</h2>
+                        <i class="fa-solid fa-plus" style="color: var(--accent); background: var(--accent-light); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer;"></i>
+                    </div>
+                    
+                    <div class="dash-list" id="messages-list">
+                        <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+                        </div>
+                        <!-- Fetched from API -->
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Auth check
+        if (sessionStorage.getItem('isLoggedIn') !== 'true' || sessionStorage.getItem('isAdmin') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('isAdmin');
+            window.location.href = 'login.html';
+        });
+
+        // Handle Inline Profile Photo Upload
+        const headerFileInput = document.getElementById('headerProfilePhoto');
+        if (headerFileInput) {
+            headerFileInput.addEventListener('change', async (e) => {
+                if (!e.target.files[0]) return;
+                
+                const formData = new FormData();
+                formData.append('profilePhoto', e.target.files[0]);
+                
+                // Optional: Show loading state on avatar (could pulse opacity)
+                const imgEl = document.getElementById('header-profile-img');
+                const originalSrc = imgEl.src;
+                imgEl.style.opacity = '0.5';
+                
+                try {
+                    const response = await fetch('http://localhost:3000/api/upload-profile', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    
+                    if (response.ok && data.success) {
+                        // Bust cache to show new image immediately
+                        imgEl.src = 'profile.jpg?t=' + new Date().getTime();
+                        imgEl.style.opacity = '1';
+                    } else {
+                        alert(data.error || 'Upload failed.');
+                        imgEl.style.opacity = '1';
+                        imgEl.src = originalSrc;
+                    }
+                } catch (err) {
+                    alert('Connection failed.');
+                    imgEl.style.opacity = '1';
+                    imgEl.src = originalSrc;
+                }
+            });
+        }
+
+
+        // Fetch Messages
+        async function fetchMessages() {
+            const list = document.getElementById('messages-list');
+            try {
+                const response = await fetch('http://localhost:3000/api/messages');
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    const messages = data.messages;
+
+                    if (messages.length === 0) {
+                        list.innerHTML = `
+                            <div style="text-align:center; padding: 20px; color: var(--text-muted);">
+                                No recent messages.
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    let html = '';
+                    const colors = ['badge-purple', 'badge-green', 'badge-orange', 'badge-blue'];
+                    
+                    messages.slice(0, 4).forEach((msg, index) => { // show top 4
+                        const date = new Date(msg.timestamp).toLocaleString('en-IN', {
+                            timeZone: 'Asia/Kolkata',
+                            day: '2-digit',
+                            month: 'short',
+                            hour: 'numeric',
+                            minute: '2-digit'
+                        });
+                        
+                        const badgeColor = colors[index % colors.length];
+
+                        html += `
+                            <div class="dash-list-item" style="align-items: flex-start; padding: 16px;">
+                                <div class="dash-list-icon" style="flex-shrink: 0;">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="dash-list-content" style="min-width: 0;">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                                        <h4 class="dash-list-title" style="margin: 0; font-size: 1rem;">${escapeHTML(msg.name)} <span style="font-weight: 400; font-size: 0.85rem; color: var(--text-muted); margin-left: 8px;">&lt;${escapeHTML(msg.email)}&gt;</span></h4>
+                                        <span style="font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; margin-left: 12px;">${date}</span>
+                                    </div>
+                                    <p style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin: 0 0 6px 0;">${escapeHTML(msg.subject)}</p>
+                                    <p class="dash-list-desc" style="color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">${escapeHTML(msg.message)}</p>
+                                </div>
+                                <span class="badge ${badgeColor}" style="margin-left: 12px; flex-shrink: 0;">New</span>
+                            </div>
+                        `;
+                    });
+
+                    list.innerHTML = html;
+                } else {
+                    list.innerHTML = `<div style="color:#ef4444; padding:10px;">Failed to load.</div>`;
+                }
+            } catch (err) {
+                list.innerHTML = `<div style="color:#ef4444; padding:10px;">Connection Error.</div>`;
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g,
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        fetchMessages();
+
+        // --- Time Tracking Logic ---
+        function initTimeTracking() {
+            let lastUpdate = Date.now();
+            
+            // Generate last 7 days keys
+            function getLast7Days() {
+                const days = [];
+                for (let i = 6; i >= 0; i--) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    const dateString = d.toISOString().split('T')[0];
+                    const dayName = d.toLocaleDateString('en-US', { weekday: 'short' }).substring(0, 2);
+                    days.push({ dateString, dayName });
+                }
+                return days;
+            }
+
+            function formatTime(ms) {
+                const totalMinutes = Math.floor(ms / 60000);
+                const hours = Math.floor(totalMinutes / 60);
+                const minutes = totalMinutes % 60;
+                if (hours > 0) {
+                    return `${hours}h ${minutes}m`;
+                }
+                if (minutes > 0) {
+                    return `${minutes}m`;
+                }
+                return '< 1m';
+            }
+
+            function updateChart() {
+                const trackingData = JSON.parse(localStorage.getItem('loginTracking') || '{}');
+                const days = getLast7Days();
+                
+                // Add some dummy historical data if empty so the chart isn't totally blank initially
+                if (Object.keys(trackingData).length === 0) {
+                    const baseDate = new Date();
+                    trackingData[new Date(baseDate.setDate(baseDate.getDate() - 1)).toISOString().split('T')[0]] = 2 * 60 * 60000 + 15 * 60000; // 2h 15m
+                    trackingData[new Date(baseDate.setDate(baseDate.getDate() - 1)).toISOString().split('T')[0]] = 4 * 60 * 60000 + 30 * 60000; // 4h 30m
+                    localStorage.setItem('loginTracking', JSON.stringify(trackingData));
+                }
+
+                const barsContainer = document.getElementById('login-chart-bars');
+                const labelsContainer = document.getElementById('login-chart-labels');
+                
+                barsContainer.innerHTML = '';
+                labelsContainer.innerHTML = '';
+
+                // Find max time to scale chart, minimum 1 hour (3600000 ms) for scale
+                let maxMs = 3600000; 
+                days.forEach(d => {
+                    if (trackingData[d.dateString] && trackingData[d.dateString] > maxMs) {
+                        maxMs = trackingData[d.dateString];
+                    }
+                });
+
+                days.forEach((d, index) => {
+                    const ms = trackingData[d.dateString] || 0;
+                    const heightPercent = Math.max((ms / maxMs) * 100, 2); // min 2% height
+                    
+                    const bar = document.createElement('div');
+                    bar.className = 'chart-bar' + (index === 6 ? ' active' : '');
+                    bar.style.height = `${heightPercent}%`;
+                    bar.setAttribute('data-value', formatTime(ms));
+                    barsContainer.appendChild(bar);
+
+                    const label = document.createElement('span');
+                    label.innerText = d.dayName;
+                    labelsContainer.appendChild(label);
+                });
+            }
+
+            // Update time every 10 seconds
+            setInterval(() => {
+                const now = Date.now();
+                const delta = now - lastUpdate;
+                lastUpdate = now;
+                
+                const today = new Date().toISOString().split('T')[0];
+                const trackingData = JSON.parse(localStorage.getItem('loginTracking') || '{}');
+                
+                trackingData[today] = (trackingData[today] || 0) + delta;
+                localStorage.setItem('loginTracking', JSON.stringify(trackingData));
+                
+                updateChart();
+            }, 10000);
+
+            // Initial render
+            updateChart();
+        }
+
+        initTimeTracking();
+
+        // --- Interactive Calendar Logic ---
+        function initCalendar() {
+            const monthYearEl = document.getElementById('calendar-month-year');
+            const gridEl = document.getElementById('calendar-grid');
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
+
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June', 
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            function renderCalendar(month, year) {
+                // Set Header
+                monthYearEl.innerText = `${months[month]}, ${year}`;
+
+                // Clear existing dates (keep headers)
+                const headers = Array.from(gridEl.querySelectorAll('.cal-day-name'));
+                gridEl.innerHTML = '';
+                headers.forEach(h => gridEl.appendChild(h));
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+                const today = new Date();
+                const isCurrentMonth = today.getMonth() === month && today.getFullYear() === year;
+
+                // Previous month's trailing days
+                for (let i = firstDay; i > 0; i--) {
+                    const div = document.createElement('div');
+                    div.className = 'cal-date';
+                    div.style.opacity = '0.4';
+                    div.innerText = daysInPrevMonth - i + 1;
+                    gridEl.appendChild(div);
+                }
+
+                // Current month's days
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'cal-date';
+                    if (isCurrentMonth && i === today.getDate()) {
+                        div.className += ' active';
+                        div.style.background = 'white';
+                        div.style.color = 'var(--accent)';
+                    }
+                    div.innerText = i;
+                    gridEl.appendChild(div);
+                }
+
+                // Next month's leading days (fill out grid to 42 cells total)
+                const totalCells = firstDay + daysInMonth;
+                const nextDays = 42 - totalCells;
+                for (let i = 1; i <= nextDays; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'cal-date';
+                    div.style.opacity = '0.4';
+                    div.innerText = i;
+                    gridEl.appendChild(div);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            // Initial render
+            renderCalendar(currentMonth, currentYear);
+        }
+
+        initCalendar();
+    </script>
+</body>
+
+</html>

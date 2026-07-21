@@ -121,7 +121,7 @@ app.post('/api/login', (req, res) => {
       }
 
       if (result) {
-        const isAdmin = (email === 'admin@demo.com');
+        const isAdmin = (email === 'sujalbhargava2341@gmail.com');
         res.json({ success: true, message: 'Login successful', isAdmin });
       } else {
         res.status(401).json({ error: 'Invalid email or password.' });

@@ -168,14 +168,12 @@
                 </div>
 
                 <div class="card fade-up" style="padding: 32px;">
-                    <div class="demo-credentials">
-                        Use credentials <strong>admin@demo.com</strong> and <strong>demo</strong> to sign in.
-                    </div>
+
 
                     <form action="index.html" method="GET">
                         <div class="form-group">
                             <label class="form-label" for="email">Email</label>
-                            <input class="form-input" type="email" id="email" name="email" placeholder="admin@demo.com"
+                            <input class="form-input" type="email" id="email" name="email" placeholder="[EMAIL_ADDRESS]"
                                 required />
                         </div>
 
@@ -257,7 +255,7 @@
                         sessionStorage.setItem('isAdmin', data.isAdmin ? 'true' : 'false');
 
                         if (data.isAdmin) {
-                            window.location.href = 'admin.html';
+                            window.location.href = 'dashboard.html';
                         } else {
                             window.location.href = 'index.html';
                         }

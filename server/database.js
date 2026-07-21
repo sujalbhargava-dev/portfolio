@@ -42,8 +42,8 @@ function initDatabase() {
 }
 
 function seedDefaultUser() {
-    const email = 'admin@demo.com';
-    const password = 'demo';
+    const email = 'sujalbhargava2341@gmail.com';
+    const password = 'sujal';
     
     db.get('SELECT id FROM users WHERE email = ?', [email], (err, row) => {
         if (!err && !row) {
@@ -51,7 +51,7 @@ function seedDefaultUser() {
                 if (!err) {
                     db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, hash], (err) => {
                         if (!err) {
-                            console.log('Seeded default user admin@demo.com');
+                            console.log('Seeded default user sujalbhargava2341@gmail.com');
                         }
                     });
                 }
