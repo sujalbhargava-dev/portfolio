@@ -42,7 +42,7 @@ if (sessionStorage.getItem('isAdmin') === 'true' && !window.location.pathname.en
             <i class="fa-solid fa-bars mobile-hamburger" id="mobile-menu-toggle"></i>
         </div>
 
-<aside class="dash-sidebar" id="dash-sidebar">
+<aside class="dash-sidebar collapsed" id="dash-sidebar">
             <a class="dash-logo" id="desktop-menu-toggle" style="display: flex; text-decoration: none; cursor: pointer;">
                 <span><i class="fa-solid fa-code"></i> <span class="logo-text">Sujal.</span></span>
                 <i class="fa-solid fa-xmark mobile-hamburger" style="display: none;" id="mobile-menu-close"></i>
