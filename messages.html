@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard — Sujal Bhargava</title>
+    <title>Messages — Sujal Bhargava</title>
     <meta name="description" content="Admin dashboard to view messages." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,8 +136,7 @@
             <a href="index.html" class="nav-logo">SB<span>.</span></a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="admin.html" class="active">Classic Admin</a></li>
-                <li><a href="dashboard.html">New Dashboard</a></li>
+                <li><a href="messages.html" class="active">Messages</a></li>
             </ul>
         </div>
     </nav>
@@ -147,7 +146,7 @@
 
             <div class="admin-header fade-up">
                 <div>
-                    <h1 class="section-title" style="margin-bottom: 4px;">Admin Dashboard</h1>
+                    <h1 class="section-title" style="margin-bottom: 4px;">Messages</h1>
                     <p class="section-desc">View and manage your contact messages.</p>
                 </div>
                 <button id="logout-btn" class="btn-logout">
@@ -155,29 +154,6 @@
                 </button>
             </div>
 
-            <!-- Profile Settings Card -->
-            <div class="message-card fade-up" style="margin-bottom: 40px; border-color: var(--accent-border);">
-                <div class="message-header" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                    <div class="message-subject"><i class="fa-solid fa-camera" style="margin-right: 8px;"></i>Profile Photo Settings</div>
-                </div>
-                <div style="margin-top: 16px;">
-                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px;">Upload a new profile photo to instantly display on your homepage. (JPG or PNG)</p>
-                    <form id="upload-form" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                        <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required style="
-                            padding: 10px;
-                            background: var(--bg-secondary);
-                            border: 1px dashed var(--border);
-                            border-radius: 6px;
-                            color: var(--text-primary);
-                            flex: 1;
-                        ">
-                        <button type="submit" id="upload-btn" class="btn-logout" style="color: var(--accent); border-color: var(--accent); background: rgba(79, 70, 229, 0.1);">
-                            <i class="fa-solid fa-upload"></i> Upload
-                        </button>
-                    </form>
-                    <div id="upload-status" style="margin-top: 12px; font-size: 0.9rem; font-weight: 500;"></div>
-                </div>
-            </div>
 
             <!-- Contact Messages -->
             <h2 class="section-title fade-up" style="font-size: 1.4rem; margin-bottom: 24px;">Inbox</h2>
@@ -216,23 +192,23 @@
                 const fileInput = document.getElementById('profilePhoto');
                 const statusDiv = document.getElementById('upload-status');
                 const btn = document.getElementById('upload-btn');
-                
+
                 if (!fileInput.files[0]) return;
-                
+
                 const formData = new FormData();
                 formData.append('profilePhoto', fileInput.files[0]);
-                
+
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
                 btn.disabled = true;
                 statusDiv.innerText = '';
-                
+
                 try {
                     const response = await fetch('http://localhost:3000/api/upload-profile', {
                         method: 'POST',
                         body: formData
                     });
                     const data = await response.json();
-                    
+
                     if (response.ok && data.success) {
                         statusDiv.style.color = '#22c55e';
                         statusDiv.innerText = data.message + ' Go back to the Home page to see it!';
@@ -245,7 +221,7 @@
                     statusDiv.style.color = '#ef4444';
                     statusDiv.innerText = 'Server connection failed.';
                 }
-                
+
                 btn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
                 btn.disabled = false;
             });

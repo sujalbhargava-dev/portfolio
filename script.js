@@ -14,7 +14,7 @@ if (sessionStorage.getItem('isAdmin') === 'true') {
   const navLinks = document.getElementById('nav-links');
   if (navLinks) {
     const adminLink = document.createElement('li');
-    adminLink.innerHTML = '<a href="admin.html"><i class="fa-solid fa-lock" style="margin-right: 6px;"></i>Admin</a>';
+    adminLink.innerHTML = '<a href="dashboard.html"><i class="fa-solid fa-lock" style="margin-right: 6px;"></i>Dashboard</a>';
     // Insert it at the very beginning of the list
     navLinks.insertBefore(adminLink, navLinks.firstChild);
   }

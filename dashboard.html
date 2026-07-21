@@ -22,7 +22,8 @@
         <!-- Mobile Header (Only visible on mobile) -->
         <div class="mobile-header" style="display: none;">
             <a href="index.html" class="dash-logo" style="text-decoration: none;">
-                <span><i class="fa-solid fa-code" style="color: var(--accent);"></i> <span style="color: var(--text-primary); font-weight: 800;">Sujal.</span></span>
+                <span><i class="fa-solid fa-code" style="color: var(--accent);"></i> <span
+                        style="color: var(--text-primary); font-weight: 800;">Sujal.</span></span>
             </a>
             <i class="fa-solid fa-bars mobile-hamburger" id="mobile-menu-toggle"></i>
         </div>
@@ -32,24 +33,26 @@
 
         <!-- Sidebar -->
         <aside class="dash-sidebar" id="dash-sidebar">
-            <a href="index.html" class="dash-logo" style="display: flex; text-decoration: none;">
+            <a class="dash-logo" style="display: flex; text-decoration: none;">
                 <span><i class="fa-solid fa-code"></i> Sujal.</span>
                 <i class="fa-solid fa-xmark mobile-hamburger" style="display: none;" id="mobile-menu-close"></i>
             </a>
 
             <div class="dash-nav">
-                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; padding-left: 16px;">Core</div>
+                <div
+                    style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; padding-left: 16px;">
+                    Core</div>
                 <a href="dashboard.html" class="dash-nav-item active">
                     <i class="fa-solid fa-border-all"></i> Dashboard
                 </a>
-                <a href="#messages-section" class="dash-nav-item">
-                    <i class="fa-regular fa-message"></i> Messages
-                </a>
-                <a href="admin.html" class="dash-nav-item">
-                    <i class="fa-solid fa-inbox"></i> Classic Admin
+
+                <a href="messages.html" class="dash-nav-item">
+                    <i class="fa-solid fa-inbox"></i> Messages
                 </a>
 
-                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin: 20px 0 8px; padding-left: 16px;">Portfolio Pages</div>
+                <div
+                    style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); margin: 20px 0 8px; padding-left: 16px;">
+                    Portfolio Pages</div>
                 <a href="index.html" class="dash-nav-item">
                     <i class="fa-solid fa-house"></i> Home
                 </a>
@@ -69,7 +72,8 @@
                     <i class="fa-regular fa-envelope"></i> Contact
                 </a>
 
-                <a href="#" id="logout-btn" class="dash-nav-item" style="margin-top: auto; border-top: 1px solid var(--border); border-radius: 0; padding-top: 20px;">
+                <a href="#" id="logout-btn" class="dash-nav-item"
+                    style="margin-top: auto; border-top: 1px solid var(--border); border-radius: 0; padding-top: 20px;">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
                 </a>
             </div>
@@ -85,13 +89,20 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" placeholder="Search analytics..." />
                     </div>
-                    
+
                     <!-- Interactive Profile Photo Upload -->
                     <div style="position: relative; display: inline-block;">
-                        <label for="headerProfilePhoto" style="cursor: pointer; display: block; position: relative;" title="Upload new profile picture" onmouseover="this.querySelector('.avatar-overlay').style.opacity=1; this.querySelector('.dash-profile').style.opacity=0.7;" onmouseout="this.querySelector('.avatar-overlay').style.opacity=0; this.querySelector('.dash-profile').style.opacity=1;">
-                            <img src="profile.jpg" alt="Profile" id="header-profile-img" class="dash-profile" style="transition: opacity 0.2s;" onerror="this.src='https://ui-avatars.com/api/?name=Sujal+Bhargava&background=4f46e5&color=fff'">
-                            <div class="avatar-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.2s; color: var(--accent);">
-                                <i class="fa-solid fa-camera" style="font-size: 1.2rem; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); color: white;"></i>
+                        <label for="headerProfilePhoto" style="cursor: pointer; display: block; position: relative;"
+                            title="Upload new profile picture"
+                            onmouseover="this.querySelector('.avatar-overlay').style.opacity=1; this.querySelector('.dash-profile').style.opacity=0.7;"
+                            onmouseout="this.querySelector('.avatar-overlay').style.opacity=0; this.querySelector('.dash-profile').style.opacity=1;">
+                            <img src="profile.jpg" alt="Profile" id="header-profile-img" class="dash-profile"
+                                style="transition: opacity 0.2s;"
+                                onerror="this.src='https://ui-avatars.com/api/?name=Sujal+Bhargava&background=4f46e5&color=fff'">
+                            <div class="avatar-overlay"
+                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0; transition: opacity 0.2s; color: var(--accent);">
+                                <i class="fa-solid fa-camera"
+                                    style="font-size: 1.2rem; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); color: white;"></i>
                             </div>
                         </label>
                         <input type="file" id="headerProfilePhoto" accept="image/*" style="display: none;">
@@ -101,13 +112,13 @@
 
             <!-- Top Cards -->
             <div class="dash-grid" style="grid-template-columns: 2fr 1fr;">
-                
+
                 <div>
                     <div class="dash-card-header">
                         <h2 class="dash-card-title">Recent Updates</h2>
                         <a href="#" class="dash-card-action">View All <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="mini-cards-row">
                         <!-- Mini Card 1 -->
                         <div class="mini-card">
@@ -155,7 +166,8 @@
                         <div class="dash-card">
                             <div class="dash-card-header">
                                 <h2 class="dash-card-title">Login Activity</h2>
-                                <span class="badge badge-green" id="login-activity-badge">Tracking <i class="fa-solid fa-clock"></i></span>
+                                <span class="badge badge-green" id="login-activity-badge">Tracking <i
+                                        class="fa-solid fa-clock"></i></span>
                             </div>
                             <div class="chart-mockup" id="login-chart-bars">
                                 <!-- Generated by JS -->
@@ -179,7 +191,8 @@
                                         <h4 class="dash-list-title">Design System</h4>
                                         <p class="dash-list-desc">UI Polish</p>
                                     </div>
-                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                    <i class="fa-solid fa-chevron-right"
+                                        style="color: var(--text-muted); font-size: 0.8rem;"></i>
                                 </div>
                                 <div class="dash-list-item" style="border: none; padding: 0; background: transparent;">
                                     <div class="dash-list-icon icon-bg-purple">
@@ -189,7 +202,8 @@
                                         <h4 class="dash-list-title">Typography</h4>
                                         <p class="dash-list-desc">Font updates</p>
                                     </div>
-                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                    <i class="fa-solid fa-chevron-right"
+                                        style="color: var(--text-muted); font-size: 0.8rem;"></i>
                                 </div>
                                 <div class="dash-list-item" style="border: none; padding: 0; background: transparent;">
                                     <div class="dash-list-icon icon-bg-green">
@@ -199,7 +213,8 @@
                                         <h4 class="dash-list-title">Color Style</h4>
                                         <p class="dash-list-desc">Theme tweaks</p>
                                     </div>
-                                    <i class="fa-solid fa-chevron-right" style="color: var(--text-muted); font-size: 0.8rem;"></i>
+                                    <i class="fa-solid fa-chevron-right"
+                                        style="color: var(--text-muted); font-size: 0.8rem;"></i>
                                 </div>
                             </div>
                         </div>
@@ -211,9 +226,12 @@
                     <!-- Calendar (Premium Style) -->
                     <div class="upload-card" style="margin-bottom: 24px;">
                         <div class="upload-card-logo" style="justify-content: space-between; margin-bottom: 20px;">
-                            <i class="fa-solid fa-chevron-left" id="prev-month" style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
-                            <span id="calendar-month-year" style="font-size: 1.1rem; font-weight: 700;">July, 2026</span>
-                            <i class="fa-solid fa-chevron-right" id="next-month" style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
+                            <i class="fa-solid fa-chevron-left" id="prev-month"
+                                style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
+                            <span id="calendar-month-year" style="font-size: 1.1rem; font-weight: 700;">July,
+                                2026</span>
+                            <i class="fa-solid fa-chevron-right" id="next-month"
+                                style="cursor: pointer; opacity: 0.8; padding: 4px;"></i>
                         </div>
                         <div class="dash-calendar" style="position: relative;">
                             <div class="cal-grid" id="calendar-grid" style="color: white; font-weight: 500;">
@@ -225,34 +243,46 @@
                                 <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">T</div>
                                 <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">F</div>
                                 <div class="cal-day-name" style="color: rgba(255,255,255,0.7);">S</div>
-                                
+
                                 <!-- Dates generated by JS -->
                             </div>
 
                             <!-- Small Pop Panel -->
-                            <div id="date-popover" style="display: none; position: absolute; top: 100%; left: 50%; transform: translate(-50%, -10px); width: 260px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 100;">
-                               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-                                   <span id="popover-date" style="font-weight: 700; font-size: 0.9rem; color: var(--text-primary);">Date</span>
-                                   <i class="fa-solid fa-xmark" id="popover-close" style="cursor: pointer; color: var(--text-muted);"></i>
-                               </div>
-                               <div id="popover-tasks" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: 150px; overflow-y: auto;">
-                                   <!-- tasks -->
-                               </div>
-                               <div style="display: flex; gap: 8px;">
-                                   <input type="text" id="popover-input" placeholder="Add schedule..." style="flex: 1; border: 1px solid var(--border); background: var(--bg-alt); color: var(--text-primary); border-radius: 6px; padding: 6px 10px; font-size: 0.85rem;">
-                                   <button id="popover-add" style="background: var(--accent); color: white; border: none; border-radius: 6px; padding: 0 10px; cursor: pointer;"><i class="fa-solid fa-plus"></i></button>
-                               </div>
+                            <div id="date-popover"
+                                style="display: none; position: absolute; top: 100%; left: 50%; transform: translate(-50%, -10px); width: 260px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 100;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                                    <span id="popover-date"
+                                        style="font-weight: 700; font-size: 0.9rem; color: var(--text-primary);">Date</span>
+                                    <i class="fa-solid fa-xmark" id="popover-close"
+                                        style="cursor: pointer; color: var(--text-muted);"></i>
+                                </div>
+                                <div id="popover-tasks"
+                                    style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: 150px; overflow-y: auto;">
+                                    <!-- tasks -->
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="popover-input" placeholder="Add schedule..."
+                                        style="flex: 1; border: 1px solid var(--border); background: var(--bg-alt); color: var(--text-primary); border-radius: 6px; padding: 6px 10px; font-size: 0.85rem;">
+                                    <button id="popover-add"
+                                        style="background: var(--accent); color: white; border: none; border-radius: 6px; padding: 0 10px; cursor: pointer;"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Holidays Container -->
-                        <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; position: relative; z-index: 1;">
-                            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; letter-spacing: 0.05em;">Holidays This Month</div>
+                        <div
+                            style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; position: relative; z-index: 1;">
+                            <div
+                                style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; letter-spacing: 0.05em;">
+                                Holidays This Month</div>
                             <div id="holiday-list" style="display: flex; flex-direction: column; gap: 12px;">
                                 <!-- Generated by JS -->
                             </div>
                         </div>
-                        <i class="fa-regular fa-calendar-days" style="position: absolute; bottom: -20px; right: -20px; font-size: 10rem; opacity: 0.05;"></i>
+                        <i class="fa-regular fa-calendar-days"
+                            style="position: absolute; bottom: -20px; right: -20px; font-size: 10rem; opacity: 0.05;"></i>
                     </div>
 
                     <!-- Upload Photo card removed since functionality is now in header -->
@@ -262,28 +292,31 @@
 
             <!-- Bottom Row -->
             <div class="dash-grid" style="grid-template-columns: 1fr 2.5fr;">
-                
+
                 <!-- Active Projects -->
                 <div class="dash-card">
                     <div class="dash-card-header">
                         <h2 class="dash-card-title">Projects You're Building</h2>
                         <a href="#" class="dash-card-action">Active <i class="fa-solid fa-chevron-down"></i></a>
                     </div>
-                    
+
                     <div class="progress-item">
                         <div class="mini-card-icon icon-bg-purple" style="margin: 0;">
                             <i class="fa-solid fa-desktop"></i>
                         </div>
                         <div class="progress-info">
                             <h4 style="margin: 0 0 4px 0; font-size: 0.95rem;">Portfolio Dashboard</h4>
-                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg" style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;" onerror="this.style.display='none'">Sujal Bhargava</p>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg"
+                                    style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;"
+                                    onerror="this.style.display='none'">Sujal Bhargava</p>
                         </div>
                         <div style="text-align: right; width: 100px;">
                             <div class="progress-header">
                                 <span style="color: var(--text-muted);">Completion</span>
                             </div>
                         </div>
-                        <div class="circular-progress" style="background: conic-gradient(var(--accent) 0% 90%, var(--border) 90% 100%);">
+                        <div class="circular-progress"
+                            style="background: conic-gradient(var(--accent) 0% 90%, var(--border) 90% 100%);">
                             <span>90%</span>
                         </div>
                     </div>
@@ -294,14 +327,17 @@
                         </div>
                         <div class="progress-info">
                             <h4 style="margin: 0 0 4px 0; font-size: 0.95rem;">Node.js API</h4>
-                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg" style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;" onerror="this.style.display='none'">Sujal Bhargava</p>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><img src="profile.jpg"
+                                    style="width:16px; height:16px; border-radius:50%; vertical-align:middle; margin-right:4px;"
+                                    onerror="this.style.display='none'">Sujal Bhargava</p>
                         </div>
                         <div style="text-align: right; width: 100px;">
                             <div class="progress-header">
                                 <span style="color: var(--text-muted);">Completion</span>
                             </div>
                         </div>
-                        <div class="circular-progress" style="background: conic-gradient(var(--success) 0% 100%, var(--border) 100% 100%);">
+                        <div class="circular-progress"
+                            style="background: conic-gradient(var(--success) 0% 100%, var(--border) 100% 100%);">
                             <span>100%</span>
                         </div>
                     </div>
@@ -311,9 +347,10 @@
                 <div class="dash-card" id="messages-section">
                     <div class="dash-card-header">
                         <h2 class="dash-card-title">Recent Messages</h2>
-                        <i class="fa-solid fa-plus" style="color: var(--accent); background: var(--accent-light); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer;"></i>
+                        <i class="fa-solid fa-plus"
+                            style="color: var(--accent); background: var(--accent-light); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer;"></i>
                     </div>
-                    
+
                     <div class="dash-list" id="messages-list">
                         <div style="text-align: center; padding: 20px; color: var(--text-muted);">
                             <i class="fa-solid fa-spinner fa-spin"></i> Loading...
@@ -346,22 +383,22 @@
         if (headerFileInput) {
             headerFileInput.addEventListener('change', async (e) => {
                 if (!e.target.files[0]) return;
-                
+
                 const formData = new FormData();
                 formData.append('profilePhoto', e.target.files[0]);
-                
+
                 // Optional: Show loading state on avatar (could pulse opacity)
                 const imgEl = document.getElementById('header-profile-img');
                 const originalSrc = imgEl.src;
                 imgEl.style.opacity = '0.5';
-                
+
                 try {
                     const response = await fetch('http://localhost:3000/api/upload-profile', {
                         method: 'POST',
                         body: formData
                     });
                     const data = await response.json();
-                    
+
                     if (response.ok && data.success) {
                         // Bust cache to show new image immediately
                         imgEl.src = 'profile.jpg?t=' + new Date().getTime();
@@ -401,7 +438,7 @@
 
                     let html = '';
                     const colors = ['badge-purple', 'badge-green', 'badge-orange', 'badge-blue'];
-                    
+
                     messages.slice(0, 4).forEach((msg, index) => { // show top 4
                         const date = new Date(msg.timestamp).toLocaleString('en-IN', {
                             timeZone: 'Asia/Kolkata',
@@ -410,7 +447,7 @@
                             hour: 'numeric',
                             minute: '2-digit'
                         });
-                        
+
                         const badgeColor = colors[index % colors.length];
 
                         html += `
@@ -457,7 +494,7 @@
         // --- Time Tracking Logic ---
         function initTimeTracking() {
             let lastUpdate = Date.now();
-            
+
             // Generate last 7 days keys
             function getLast7Days() {
                 const days = [];
@@ -487,7 +524,7 @@
             function updateChart() {
                 const trackingData = JSON.parse(localStorage.getItem('loginTracking') || '{}');
                 const days = getLast7Days();
-                
+
                 // Add some dummy historical data if empty so the chart isn't totally blank initially
                 if (Object.keys(trackingData).length === 0) {
                     const baseDate = new Date();
@@ -498,12 +535,12 @@
 
                 const barsContainer = document.getElementById('login-chart-bars');
                 const labelsContainer = document.getElementById('login-chart-labels');
-                
+
                 barsContainer.innerHTML = '';
                 labelsContainer.innerHTML = '';
 
                 // Find max time to scale chart, minimum 1 hour (3600000 ms) for scale
-                let maxMs = 3600000; 
+                let maxMs = 3600000;
                 days.forEach(d => {
                     if (trackingData[d.dateString] && trackingData[d.dateString] > maxMs) {
                         maxMs = trackingData[d.dateString];
@@ -513,7 +550,7 @@
                 days.forEach((d, index) => {
                     const ms = trackingData[d.dateString] || 0;
                     const heightPercent = Math.max((ms / maxMs) * 100, 2); // min 2% height
-                    
+
                     const bar = document.createElement('div');
                     bar.className = 'chart-bar' + (index === 6 ? ' active' : '');
                     bar.style.height = `${heightPercent}%`;
@@ -531,13 +568,13 @@
                 const now = Date.now();
                 const delta = now - lastUpdate;
                 lastUpdate = now;
-                
+
                 const today = new Date().toISOString().split('T')[0];
                 const trackingData = JSON.parse(localStorage.getItem('loginTracking') || '{}');
-                
+
                 trackingData[today] = (trackingData[today] || 0) + delta;
                 localStorage.setItem('loginTracking', JSON.stringify(trackingData));
-                
+
                 updateChart();
             }, 10000);
 
@@ -558,7 +595,7 @@
             let currentYear = new Date().getFullYear();
 
             const months = [
-                'January', 'February', 'March', 'April', 'May', 'June', 
+                'January', 'February', 'March', 'April', 'May', 'June',
                 'July', 'August', 'September', 'October', 'November', 'December'
             ];
 
@@ -601,14 +638,14 @@
                     div.style.cursor = 'pointer';
                     div.style.position = 'relative';
                     div.dataset.date = getDateKey(year, month, i);
-                    
+
                     if (isCurrentMonth && i === today.getDate()) {
                         div.className += ' active';
                         div.style.background = 'white';
                         div.style.color = 'var(--accent)';
                     }
                     div.innerText = i;
-                    
+
                     // Add dot indicator if tasks exist
                     if (tasksData[div.dataset.date] && tasksData[div.dataset.date].length > 0) {
                         const dot = document.createElement('div');
@@ -636,7 +673,7 @@
                             div.style.background = 'rgba(255,255,255,0.2)';
                             div.style.borderRadius = '8px';
                         }
-                        
+
                         // Call global popover function
                         if (window.showPopoverForDate) {
                             window.showPopoverForDate(div.dataset.date, `${months[month]} ${i}, ${year}`);
@@ -734,17 +771,17 @@
 
             function renderPopoverTasks() {
                 if (!selectedDateKey) return;
-                
+
                 const tasksData = JSON.parse(localStorage.getItem('calendarTasks') || '{}');
                 const tasks = tasksData[selectedDateKey] || [];
-                
+
                 listEl.innerHTML = '';
-                
+
                 if (tasks.length === 0) {
                     listEl.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">No tasks yet.</div>`;
                     return;
                 }
-                
+
                 tasks.forEach((task, idx) => {
                     const div = document.createElement('div');
                     div.style.display = 'flex';
@@ -753,14 +790,14 @@
                     div.style.background = 'rgba(255,255,255,0.05)';
                     div.style.padding = '6px 10px';
                     div.style.borderRadius = '4px';
-                    
+
                     div.innerHTML = `
                         <span style="font-size: 0.85rem; color: var(--text-primary); word-break: break-all;">${escapeHTML(task)}</span>
                         <i class="fa-solid fa-trash popover-delete-btn" data-idx="${idx}" style="color: #ef4444; font-size: 0.8rem; cursor: pointer; padding-left: 8px;"></i>
                     `;
                     listEl.appendChild(div);
                 });
-                
+
                 // Add delete listeners
                 document.querySelectorAll('.popover-delete-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
@@ -769,7 +806,7 @@
                         tasksData[selectedDateKey] = tasks;
                         localStorage.setItem('calendarTasks', JSON.stringify(tasksData));
                         renderPopoverTasks();
-                        if(window.refreshCalendar) window.refreshCalendar();
+                        if (window.refreshCalendar) window.refreshCalendar();
                     });
                 });
             }
@@ -786,16 +823,16 @@
             function saveTask() {
                 const val = inputEl.value.trim();
                 if (!val || !selectedDateKey) return;
-                
+
                 const tasksData = JSON.parse(localStorage.getItem('calendarTasks') || '{}');
                 if (!tasksData[selectedDateKey]) tasksData[selectedDateKey] = [];
                 tasksData[selectedDateKey].push(val);
-                
+
                 localStorage.setItem('calendarTasks', JSON.stringify(tasksData));
                 inputEl.value = '';
-                
+
                 renderPopoverTasks();
-                if(window.refreshCalendar) window.refreshCalendar();
+                if (window.refreshCalendar) window.refreshCalendar();
             }
 
             saveBtn.addEventListener('click', saveTask);
@@ -810,32 +847,32 @@
         const menuClose = document.getElementById('mobile-menu-close');
         const sidebar = document.getElementById('dash-sidebar');
         const overlay = document.getElementById('sidebar-overlay');
-        
+
         function openSidebar() {
-            if(sidebar) sidebar.classList.add('mobile-open');
-            if(overlay) overlay.classList.add('active');
+            if (sidebar) sidebar.classList.add('mobile-open');
+            if (overlay) overlay.classList.add('active');
         }
 
         function closeSidebar() {
-            if(sidebar) sidebar.classList.remove('mobile-open');
-            if(overlay) overlay.classList.remove('active');
+            if (sidebar) sidebar.classList.remove('mobile-open');
+            if (overlay) overlay.classList.remove('active');
         }
 
-        if(menuToggle) {
+        if (menuToggle) {
             menuToggle.addEventListener('click', (e) => {
                 e.preventDefault();
                 openSidebar();
             });
         }
 
-        if(menuClose) {
+        if (menuClose) {
             menuClose.addEventListener('click', (e) => {
                 e.preventDefault();
                 closeSidebar();
             });
         }
 
-        if(overlay) {
+        if (overlay) {
             overlay.addEventListener('click', closeSidebar);
         }
     </script>

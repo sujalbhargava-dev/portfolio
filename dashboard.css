@@ -33,6 +33,16 @@ body.dashboard-body footer {
     display: flex;
     flex-direction: column;
     z-index: 10;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar for sidebar */
+.dash-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.dash-sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--border-hover);
+    border-radius: 4px;
 }
 
 .dash-logo {
@@ -57,7 +67,6 @@ body.dashboard-body footer {
     flex-direction: column;
     gap: 8px;
     flex: 1;
-    overflow-y: auto;
 }
 
 .dash-nav-item {
@@ -598,4 +607,71 @@ body.dashboard-body footer {
 .cal-date.muted {
     color: var(--text-muted);
     opacity: 0.5;
+}
+
+/* Mobile Sidebar Drawer */
+@media (max-width: 900px) {
+    .dash-sidebar {
+        position: fixed;
+        left: -300px;
+        top: 0;
+        bottom: 0;
+        width: 260px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        box-shadow: 10px 0 25px rgba(0,0,0,0.5);
+    }
+    
+    .dash-sidebar.mobile-open {
+        left: 0;
+    }
+    
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .mobile-header {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .mobile-hamburger {
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-primary);
+    }
+    
+    .dash-main {
+        padding: 20px;
+    }
+    
+    #mobile-menu-close {
+        display: block !important;
+        margin-left: auto;
+    }
+    
+    .dash-grid, .grid-col-2, .mini-cards-row {
+        grid-template-columns: 1fr !important;
+    }
 }
