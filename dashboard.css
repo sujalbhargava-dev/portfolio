@@ -609,6 +609,48 @@ body.dashboard-body footer {
     opacity: 0.5;
 }
 
+
+/* Desktop Sidebar Collapse */
+.dash-sidebar {
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.dash-sidebar.collapsed {
+    width: 84px;
+    padding: 30px 10px;
+    align-items: center;
+}
+
+.dash-sidebar.collapsed .logo-text,
+.dash-sidebar.collapsed .nav-text,
+.dash-sidebar.collapsed .nav-section-title {
+    display: none;
+}
+
+.dash-sidebar.collapsed .dash-logo {
+    padding-left: 0;
+    justify-content: center;
+}
+
+.dash-sidebar.collapsed .dash-nav-item {
+    justify-content: center;
+    padding: 12px 0;
+    width: 100%;
+}
+
+.dash-sidebar.collapsed .dash-nav-item i {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+@media (min-width: 901px) {
+    .dash-sidebar.collapsed + .dash-main {
+        /* Ensure the main area expands */
+        width: calc(100% - 84px);
+    }
+}
+
+
 /* Mobile Sidebar Drawer */
 @media (max-width: 900px) {
     .dash-sidebar {
