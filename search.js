@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             searchResults.style.display = 'block';
         }
-        }
 
         const matches = searchIndex.filter(item => {
             return item.title.toLowerCase().includes(query) || item.keywords.includes(query);
@@ -61,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.className = 'search-result-item';
             el.innerHTML = `
                 <div class="search-result-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                <div class="search-result-text">\${match.title}</div>
+                <div class="search-result-text">${match.title}</div>
                 <div class="search-result-arrow"><i class="fa-solid fa-arrow-right"></i></div>
             `;
             searchResults.appendChild(el);
