@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="view-transition" content="same-origin" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — Sujal Bhargava</title>
@@ -296,6 +297,15 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html">Logout</a></li>
       </ul>
+    
+      <!-- Inline Search Bar -->
+      <div class="nav-search" data-feature="global-search" style="display:none;">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="global-search-input" placeholder="Search portfolio..." autocomplete="off">
+          <div class="search-dropdown" id="global-search-results" style="display:none;">
+              <!-- results -->
+          </div>
+      </div>
     </div>
   </nav>
 
@@ -485,7 +495,12 @@
   <footer>
     <p>Designed &amp; Built by <a href="index.html">Sujal Bhargava</a> &nbsp;&middot;&nbsp; &copy; 2025</p>
   </footer>
-  <script src="script.js"></script>
+  
+    
+    </div>
+
+    <script src="search.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -114,6 +114,16 @@ if (sessionStorage.getItem('isAdmin') === 'true' && !window.location.pathname.en
   // Attach Sidebar event listeners
   const sidebar = document.getElementById('dash-sidebar');
   const overlay = document.getElementById('sidebar-overlay');
+
+  if (sidebar) {
+    const isCollapsed = localStorage.getItem('sidebarCollapsed');
+    if (isCollapsed === 'false') {
+      sidebar.classList.remove('collapsed');
+    } else if (isCollapsed === 'true') {
+      sidebar.classList.add('collapsed');
+    }
+  }
+
   const dashMenuToggle = document.getElementById('mobile-menu-toggle');
   const dashMenuClose = document.getElementById('mobile-menu-close');
   const desktopToggle = document.getElementById('desktop-menu-toggle');
@@ -123,7 +133,10 @@ if (sessionStorage.getItem('isAdmin') === 'true' && !window.location.pathname.en
     desktopToggle.addEventListener('click', (e) => {
       if (window.innerWidth > 900) {
         e.preventDefault();
-        if (sidebar) sidebar.classList.toggle('collapsed');
+        if (sidebar) {
+          sidebar.classList.toggle('collapsed');
+          localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+        }
       }
     });
   }
@@ -281,4 +294,45 @@ document.querySelectorAll('.skill-card').forEach(card => {
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
   });
+});
+
+
+// === FEATURE FLAGS ===
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const res = await fetch('http://localhost:3000/api/features');
+        if (res.ok) {
+            const features = await res.json();
+            const isAdmin = sessionStorage.getItem('isAdmin') === 'true';
+            const urlParams = new URLSearchParams(window.location.search);
+            const isTest = urlParams.get('test') === 'true';
+
+            document.querySelectorAll('[data-feature]').forEach(el => {
+                const featureId = el.getAttribute('data-feature');
+                // Default to hidden if not defined yet
+                const status = features[featureId] || 'hidden'; 
+
+                let show = false;
+                if (status === 'public') {
+                    show = true;
+                } else if (status === 'admin' && isAdmin) {
+                    show = true;
+                } else if (status === 'testing' && isTest) {
+                    show = true;
+                }
+
+                if (!show) {
+                    // Hide the element completely
+                    el.style.display = 'none';
+                } else {
+                    // Restore default display if it was inline hidden
+                    if (el.style.display === 'none') {
+                        el.style.display = '';
+                    }
+                }
+            });
+        }
+    } catch (e) {
+        console.error('Failed to load features:', e);
+    }
 });

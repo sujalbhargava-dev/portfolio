@@ -140,6 +140,43 @@ app.get('/api/messages', (req, res) => {
     res.json({ success: true, messages: rows });
   });
 });
+// API endpoint to get features
+app.get('/api/features', (req, res) => {
+  const featurePath = path.join(__dirname, 'features.json');
+  try {
+    if (fs.existsSync(featurePath)) {
+      const data = fs.readFileSync(featurePath, 'utf8');
+      res.json(JSON.parse(data));
+    } else {
+      res.json({});
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to read features' });
+  }
+});
+
+// API endpoint to update feature status
+app.post('/api/features', (req, res) => {
+  const { featureId, status } = req.body;
+  if (!featureId || !['testing', 'admin', 'public'].includes(status)) {
+    return res.status(400).json({ error: 'Invalid feature data' });
+  }
+
+  const featurePath = path.join(__dirname, 'features.json');
+  try {
+    let features = {};
+    if (fs.existsSync(featurePath)) {
+      features = JSON.parse(fs.readFileSync(featurePath, 'utf8'));
+    }
+    
+    features[featureId] = status;
+    fs.writeFileSync(featurePath, JSON.stringify(features, null, 2));
+    
+    res.json({ success: true, features });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update feature' });
+  }
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running at:`);
