@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useFeatureFlags } from '../hooks/useFeatureFlags'
 import SearchBar from '../components/SearchBar'
+import ThemeToggle from '../components/ThemeToggle'
 import LoginActivityChart from '../components/LoginActivityChart'
 import CalendarWidget from '../components/CalendarWidget'
 
@@ -53,6 +54,7 @@ export default function Dashboard() {
         <h1 className="dash-welcome">Welcome back, Sujal 👋</h1>
         <div className="dash-header-right">
           {isFeatureEnabled('global-search') && <SearchBar />}
+          {isFeatureEnabled('dark-mode') && <ThemeToggle />}
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <label htmlFor="headerProfilePhoto" style={{ cursor: 'pointer', display: 'block', position: 'relative' }} title="Upload new profile picture">
               <img src={profileImgSrc} alt="Profile" className="dash-profile" onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=SB&background=4f46e5&color=fff&size=40' }} />

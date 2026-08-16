@@ -48,27 +48,118 @@
   --card-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
+/* Background elements */
 [data-theme="dark"] .bg-grid {
   background-image: radial-gradient(circle at 1px 1px, #1e293b 1px, transparent 0);
   opacity: 0.5;
 }
-
 [data-theme="dark"] .bg-orb-1 {
   background: radial-gradient(circle, rgba(129, 140, 248, 0.1) 0%, transparent 65%);
 }
-
 [data-theme="dark"] .bg-orb-2 {
   background: radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 65%);
 }
 
+/* Navbar */
 [data-theme="dark"] nav {
-  background: rgba(15, 23, 42, 0.88);
-  border-bottom-color: var(--border);
+  background: rgba(15, 23, 42, 0.92);
+  border-bottom-color: #1e293b;
 }
 
+/* Cards */
 [data-theme="dark"] .card {
   background: var(--bg-secondary);
 }
+
+/* Badges — dark-friendly backgrounds */
+[data-theme="dark"] .badge-blue { background: rgba(37, 99, 235, 0.15); color: #60a5fa; }
+[data-theme="dark"] .badge-purple { background: rgba(124, 58, 237, 0.15); color: #a78bfa; }
+[data-theme="dark"] .badge-green { background: rgba(22, 163, 74, 0.15); color: #34d399; }
+[data-theme="dark"] .badge-orange { background: rgba(234, 88, 12, 0.15); color: #fb923c; }
+[data-theme="dark"] .badge-pink { background: rgba(219, 39, 119, 0.15); color: #f472b6; }
+[data-theme="dark"] .badge-teal { background: rgba(13, 148, 136, 0.15); color: #2dd4bf; }
+[data-theme="dark"] .badge-red { background: rgba(220, 38, 38, 0.15); color: #f87171; }
+
+/* Education page */
+[data-theme="dark"] .edu-highlight {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(129, 140, 248, 0.06));
+  border-color: var(--accent-border);
+}
+[data-theme="dark"] .hl-icon {
+  background: var(--bg-secondary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .tl-year .current-badge {
+  background: rgba(22, 163, 74, 0.15);
+  color: #34d399;
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+/* Skills page icons */
+[data-theme="dark"] .cat-db .cat-icon { background: rgba(22, 163, 74, 0.15); }
+[data-theme="dark"] .cat-web .cat-icon { background: rgba(219, 39, 119, 0.15); }
+[data-theme="dark"] .cat-tools .cat-icon { background: rgba(234, 88, 12, 0.15); }
+[data-theme="dark"] .cat-concepts .cat-icon { background: rgba(124, 58, 237, 0.15); }
+[data-theme="dark"] .concept-card:hover { background: rgba(124, 58, 237, 0.1); }
+
+/* Contact page icons */
+[data-theme="dark"] .cc-email .cc-icon { background: rgba(220, 38, 38, 0.15); color: #f87171; }
+[data-theme="dark"] .cc-github .cc-icon { background: rgba(148, 163, 184, 0.15); color: #e2e8f0; }
+[data-theme="dark"] .cc-linkedin .cc-icon { background: rgba(37, 99, 235, 0.15); color: #60a5fa; }
+[data-theme="dark"] .avail-text { color: #34d399; }
+
+/* Projects page */
+[data-theme="dark"] .type-database { background: rgba(22, 163, 74, 0.15); color: #34d399; }
+[data-theme="dark"] .p2 .feature-dot { background: rgba(22, 163, 74, 0.15); }
+[data-theme="dark"] .p2 .tech-tag { background: rgba(22, 163, 74, 0.15); color: #34d399; border-color: rgba(22, 163, 74, 0.3); }
+
+/* Dashboard icon backgrounds */
+[data-theme="dark"] .icon-bg-orange { background: rgba(234, 88, 12, 0.15); }
+[data-theme="dark"] .icon-bg-green { background: rgba(22, 163, 74, 0.15); }
+[data-theme="dark"] .icon-bg-purple { background: rgba(124, 58, 237, 0.15); }
+[data-theme="dark"] .icon-bg-blue { background: rgba(37, 99, 235, 0.15); }
+
+/* Form inputs */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+}
+
+/* Footer */
+[data-theme="dark"] footer {
+  background: var(--bg-secondary);
+  border-top-color: var(--border);
+}
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+}
+
+/* About page */
+[data-theme="dark"] .avatar-wrap {
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), rgba(129, 140, 248, 0.04));
+  border-color: var(--accent-border);
+}
+[data-theme="dark"] .fact-icon {
+  background: var(--bg-secondary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .about-socials .social-icon {
+  background: var(--bg-secondary);
+  border-color: var(--border-hover);
+}
+
+/* Home page code block */
+[data-theme="dark"] .code-card {
+  background: var(--bg-secondary);
+}
+
 
 /* === RESET === */
 *,
