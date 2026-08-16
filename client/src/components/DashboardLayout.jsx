@@ -80,6 +80,14 @@ export default function DashboardLayout() {
             <i className="fa-solid fa-inbox"></i> <span className="nav-text">Messages</span>
           </NavLink>
 
+          <div className="nav-section-title" style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, color: 'var(--text-muted)', margin: '20px 0 8px', paddingLeft: 16 }}>Management</div>
+          <NavLink to="/manage-skills" className={({ isActive }) => `dash-nav-item ${isActive ? 'active' : ''}`} onClick={closeMobile}>
+            <i className="fa-solid fa-wand-magic-sparkles"></i> <span className="nav-text">Manage Skills</span>
+          </NavLink>
+          <NavLink to="/manage-projects" className={({ isActive }) => `dash-nav-item ${isActive ? 'active' : ''}`} onClick={closeMobile}>
+            <i className="fa-solid fa-briefcase"></i> <span className="nav-text">Manage Projects</span>
+          </NavLink>
+
           <div className="nav-section-title" style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, color: 'var(--text-muted)', margin: '20px 0 8px', paddingLeft: 16 }}>Portfolio Pages</div>
           <NavLink to="/" className={({ isActive }) => `dash-nav-item ${isActive ? 'active' : ''}`} onClick={closeMobile} end>
             <i className="fa-solid fa-house"></i> <span className="nav-text">Home</span>

@@ -36,7 +36,7 @@ body.dashboard-body footer {
     position: sticky;
     top: 0;
     height: 100vh;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 /* Custom scrollbar for sidebar */
