@@ -1,4 +1,5 @@
 {
   "new-hero": "testing",
-  "global-search": "public"
+  "global-search": "public",
+  "dark-mode": "public"
 }

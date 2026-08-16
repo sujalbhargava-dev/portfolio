@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useFeatureFlags } from '../hooks/useFeatureFlags'
 import SearchBar from './SearchBar'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -55,6 +56,10 @@ export default function Navbar() {
 
         {isFeatureEnabled('global-search') && (
           <SearchBar />
+        )}
+
+        {isFeatureEnabled('dark-mode') && (
+          <ThemeToggle />
         )}
       </div>
     </nav>
