@@ -1,6 +1,6 @@
 .projects-grid { display: grid; gap: 28px; }
-.project-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--card-shadow); transition: var(--transition); display: grid; grid-template-columns: 1fr; }
-.project-card:hover { box-shadow: var(--card-shadow-md); transform: translateY(-4px); }
+.project-card { background: var(--bg-secondary); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--card-shadow); transition: var(--transition); display: grid; grid-template-columns: 1fr; }
+.project-card:hover { box-shadow: var(--card-shadow-md); transform: translateY(-6px) scale(1.01); border-color: var(--accent-border); }
 .project-card::before { content: ''; display: block; height: 4px; }
 .project-card.p1::before { background: linear-gradient(90deg, #4f46e5, #7c3aed); }
 .project-card.p2::before { background: linear-gradient(90deg, #0d9488, #10b981); }

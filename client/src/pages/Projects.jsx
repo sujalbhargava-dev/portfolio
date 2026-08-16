@@ -1,99 +1,95 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import '../styles/Projects.css'
 
 export default function Projects() {
   const animateRef = useScrollAnimation()
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/projects')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) setProjects(data.projects)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) return <div className="page" style={{ padding: 100, textAlign: 'center' }}>Loading projects...</div>
 
   return (
     <div className="page">
       <div className="section">
         <div className="section-header fade-up" ref={animateRef}>
           <span className="section-tag">My Work</span>
-          <h1 className="section-title">Featured Projects</h1>
+          <h1 className="section-title text-gradient">Featured Projects</h1>
           <p className="section-desc">Real-world applications I have built, applying programming concepts to solve practical problems.</p>
         </div>
 
         <div className="projects-grid">
-          {/* Project 1 */}
-          <div className="project-card p1 fade-up" ref={animateRef} id="project-shopping-cart">
-            <div className="project-inner">
-              <div className="project-meta">
-                <span className="project-number">Project 01</span>
-                <span className="project-type type-desktop"><i className="fa-solid fa-desktop"></i> &nbsp;Desktop App</span>
+          {projects.map((project, index) => (
+            <div key={project.id} className={`project-card p${(index % 2) + 1} fade-up`} ref={animateRef}>
+              <div className="project-inner">
+                <div className="project-meta">
+                  <span className="project-number">Project {String(index + 1).padStart(2, '0')}</span>
+                  <span className={`project-type type-${project.project_type?.toLowerCase().includes('database') ? 'database' : 'desktop'}`}>
+                    <i className={`fa-solid ${project.project_type?.toLowerCase().includes('database') ? 'fa-database' : 'fa-desktop'}`}></i> &nbsp;{project.project_type}
+                  </span>
+                </div>
+                <h2 className="project-title">{project.title}</h2>
+                <p className="project-desc">{project.description}</p>
+                
+                {project.features && project.features.length > 0 && (
+                  <div className="feature-list">
+                    {project.features.map((f, i) => (
+                      <div className="feature-item" key={i}><div className="feature-dot"><i className="fa-solid fa-check"></i></div><span>{f}</span></div>
+                    ))}
+                  </div>
+                )}
+                
+                {project.tech_stack && project.tech_stack.length > 0 && (
+                  <div className="tech-section">
+                    <div className="tech-label">Tech Stack</div>
+                    <div className="tech-tags">
+                      {project.tech_stack.map(t => <span className="tech-tag" key={t}>{t}</span>)}
+                    </div>
+                  </div>
+                )}
+                
+                {project.github_url && (
+                  <div style={{ marginTop: 24 }}>
+                    <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ padding: '8px 16px', fontSize: '0.85rem' }}>
+                      <i className="fa-brands fa-github"></i> View Source
+                    </a>
+                  </div>
+                )}
               </div>
-              <h2 className="project-title">Shopping Cart Management System</h2>
-              <p className="project-desc">A fully-functional desktop shopping cart application built with Python and Tkinter. Users can manage a product catalog, apply discounts, calculate shipping charges, and generate detailed billing summaries — all through an intuitive GUI interface.</p>
-              <div className="feature-list">
-                {['Add, update, and delete products with full CRUD operations','Automatic discount calculation based on cart total','Dynamic shipping charge computation','Billing summary generation with itemized receipts','File Handling / MySQL for persistent data storage','OOP-based modular design for scalability'].map((f, i) => (
-                  <div className="feature-item" key={i}><div className="feature-dot"><i className="fa-solid fa-check"></i></div><span>{f}</span></div>
-                ))}
-              </div>
-              <div className="tech-section">
-                <div className="tech-label">Tech Stack</div>
-                <div className="tech-tags">
-                  {['Python','Tkinter','MySQL','File Handling','OOP'].map(t => <span className="tech-tag" key={t}>{t}</span>)}
+              
+              <div className="project-visual">
+                <div className="visual-label"><i className="fa-solid fa-terminal"></i> &nbsp;Preview Overview</div>
+                <div className="visual-mockup">
+                  <div><span className="vm-g">===== {project.title} =====</span></div>
+                  <div><span className="vm-b">Type:</span> {project.project_type}</div>
+                  <div>-------------------------------</div>
+                  {project.tech_stack && project.tech_stack.map((t, i) => (
+                    <div key={i}><span className="vm-y">&gt; Loading module:</span> {t}... <span className="vm-g">[OK]</span></div>
+                  ))}
+                  <div>-------------------------------</div>
+                  <div><span className="vm-p">System ready.</span></div>
+                  <div><span className="vm-b">Awaiting input...</span> <span style={{ animation: 'blink 1s step-end infinite' }}>_</span></div>
                 </div>
               </div>
             </div>
-            <div className="project-visual">
-              <div className="visual-label"><i className="fa-solid fa-terminal"></i> &nbsp;Terminal Preview</div>
-              <div className="visual-mockup">
-                <div><span className="vm-g">===== Shopping Cart System =====</span></div>
-                <div><span className="vm-b">Product</span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="vm-b">Qty</span>&nbsp;&nbsp;<span className="vm-b">Price</span>&nbsp;&nbsp;<span className="vm-b">Total</span></div>
-                <div>-------------------------------</div>
-                <div>Laptop &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;45000&nbsp;&nbsp;45000</div>
-                <div>Mouse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500&nbsp;&nbsp;&nbsp;1000</div>
-                <div>Keyboard&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;1200&nbsp;&nbsp;&nbsp;1200</div>
-                <div>-------------------------------</div>
-                <div>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="vm-y">47200</span></div>
-                <div>Discount (10%)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="vm-r">-4720</span></div>
-                <div>Shipping&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="vm-y">99</span></div>
-                <div>==============================</div>
-                <div><span className="vm-g">TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42579</span></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 2 */}
-          <div className="project-card p2 fade-up" ref={animateRef} id="project-payroll">
-            <div className="project-inner">
-              <div className="project-meta">
-                <span className="project-number">Project 02</span>
-                <span className="project-type type-database"><i className="fa-solid fa-database"></i> &nbsp;Database System</span>
-              </div>
-              <h2 className="project-title">Payroll Management System</h2>
-              <p className="project-desc">A comprehensive database-driven payroll system designed for organizations to manage employee records, track attendance, automate salary calculations, and handle leave management — all modeled with proper DBMS principles and ER diagrams.</p>
-              <div className="feature-list">
-                {['Complete employee record management system','Attendance tracking and leave management module','Automated salary calculation with deductions and allowances','Department-based organizational structure','Properly designed ER Diagram with normalized tables','Complex SQL queries for reporting and analytics'].map((f, i) => (
-                  <div className="feature-item" key={i}><div className="feature-dot"><i className="fa-solid fa-check"></i></div><span>{f}</span></div>
-                ))}
-              </div>
-              <div className="tech-section">
-                <div className="tech-label">Tech Stack</div>
-                <div className="tech-tags">
-                  {['MySQL','SQL','ER Diagram','DBMS Concepts','Normalization'].map(t => <span className="tech-tag" key={t}>{t}</span>)}
-                </div>
-              </div>
-            </div>
-            <div className="project-visual">
-              <div className="visual-label"><i className="fa-solid fa-terminal"></i> &nbsp;SQL Preview</div>
-              <div className="visual-mockup">
-                <div><span className="vm-p">-- Salary Calculation Query</span></div>
-                <div><span className="vm-b">SELECT</span> e.emp_id, e.name,</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;d.dept_name,</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;s.basic + s.hra + s.da <span className="vm-b">AS</span> gross,</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;s.pf + s.tax <span className="vm-b">AS</span> deductions,</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;(s.basic+s.hra+s.da) -</div>
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;(s.pf+s.tax) <span className="vm-b">AS</span> <span className="vm-g">net_salary</span></div>
-                <div><span className="vm-b">FROM</span> employees e</div>
-                <div><span className="vm-b">JOIN</span> departments d <span className="vm-b">ON</span> e.dept_id=d.id</div>
-                <div><span className="vm-b">JOIN</span> salaries s <span className="vm-b">ON</span> e.emp_id=s.emp_id</div>
-                <div><span className="vm-b">WHERE</span> e.status=<span className="vm-y">'active'</span></div>
-                <div><span className="vm-b">ORDER BY</span> <span className="vm-g">net_salary</span> <span className="vm-b">DESC</span>;</div>
-              </div>
-            </div>
-          </div>
+          ))}
+          {projects.length === 0 && (
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 40, color: 'var(--text-muted)' }}>No projects found.</div>
+          )}
         </div>
 
         {/* CTA */}

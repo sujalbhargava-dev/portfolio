@@ -178,6 +178,101 @@ app.post('/api/features', (req, res) => {
   }
 });
 
+// --- SKILLS API ---
+
+// Get all skills
+app.get('/api/skills', (req, res) => {
+  db.all('SELECT * FROM skills ORDER BY sort_order ASC, id ASC', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true, skills: rows });
+  });
+});
+
+// Add a skill
+app.post('/api/skills', (req, res) => {
+  const { name, emoji, category, subtitle, sort_order } = req.body;
+  if (!name || !category) return res.status(400).json({ error: 'Name and category are required' });
+  
+  const query = `INSERT INTO skills (name, emoji, category, subtitle, sort_order) VALUES (?, ?, ?, ?, ?)`;
+  db.run(query, [name, emoji || '⚡', category, subtitle || '', sort_order || 0], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true, id: this.lastID });
+  });
+});
+
+// Update a skill
+app.put('/api/skills/:id', (req, res) => {
+  const { name, emoji, category, subtitle, sort_order } = req.body;
+  const query = `UPDATE skills SET name=?, emoji=?, category=?, subtitle=?, sort_order=? WHERE id=?`;
+  db.run(query, [name, emoji, category, subtitle, sort_order, req.params.id], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true });
+  });
+});
+
+// Delete a skill
+app.delete('/api/skills/:id', (req, res) => {
+  db.run('DELETE FROM skills WHERE id = ?', [req.params.id], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true });
+  });
+});
+
+
+// --- PROJECTS API ---
+
+// Get all projects
+app.get('/api/projects', (req, res) => {
+  db.all('SELECT * FROM projects ORDER BY sort_order ASC, id ASC', [], (err, rows) => {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    // parse JSON fields
+    const projects = rows.map(r => ({
+      ...r,
+      features: JSON.parse(r.features || '[]'),
+      tech_stack: JSON.parse(r.tech_stack || '[]')
+    }));
+    res.json({ success: true, projects });
+  });
+});
+
+// Add a project
+app.post('/api/projects', (req, res) => {
+  const { title, description, project_type, features, tech_stack, github_url, sort_order } = req.body;
+  if (!title || !description) return res.status(400).json({ error: 'Title and description required' });
+  
+  const query = `INSERT INTO projects (title, description, project_type, features, tech_stack, github_url, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  db.run(query, [
+    title, description, project_type || 'Project',
+    JSON.stringify(features || []), JSON.stringify(tech_stack || []),
+    github_url || '', sort_order || 0
+  ], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true, id: this.lastID });
+  });
+});
+
+// Update a project
+app.put('/api/projects/:id', (req, res) => {
+  const { title, description, project_type, features, tech_stack, github_url, sort_order } = req.body;
+  const query = `UPDATE projects SET title=?, description=?, project_type=?, features=?, tech_stack=?, github_url=?, sort_order=? WHERE id=?`;
+  db.run(query, [
+    title, description, project_type,
+    JSON.stringify(features || []), JSON.stringify(tech_stack || []),
+    github_url, sort_order, req.params.id
+  ], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true });
+  });
+});
+
+// Delete a project
+app.delete('/api/projects/:id', (req, res) => {
+  db.run('DELETE FROM projects WHERE id = ?', [req.params.id], function(err) {
+    if (err) return res.status(500).json({ error: 'Database error' });
+    res.json({ success: true });
+  });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running at:`);
   console.log(`  Local:   http://localhost:${PORT}`);

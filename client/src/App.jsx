@@ -15,6 +15,8 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Messages from './pages/Messages'
+import ManageSkills from './pages/ManageSkills'
+import ManageProjects from './pages/ManageProjects'
 
 function PublicLayout({ children }) {
   return (
@@ -50,6 +52,8 @@ export default function App() {
       }>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/messages" element={<Messages />} />
+        <Route path="/manage-skills" element={<ManageSkills />} />
+        <Route path="/manage-projects" element={<ManageProjects />} />
       </Route>
 
       {/* Portfolio pages - public for everyone */}

@@ -47,7 +47,7 @@ export default function Home() {
               />
               <h1 className="hero-name" style={{ marginBottom: 0, animation: 'none' }}>
                 Hi, I am<br />
-                <span className="gradient-text">Sujal Bhargava</span>
+                <span className="text-gradient">Sujal Bhargava</span>
               </h1>
             </div>
             <p className="hero-tagline">
