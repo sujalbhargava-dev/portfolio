@@ -731,3 +731,10 @@ body.dashboard-body footer {
   }
 }
 
+/* Dark mode overrides for Dashboard specific components */
+[data-theme="dark"] .upload-card {
+    background: var(--bg-secondary);
+    background-image: none;
+    border: 1px solid var(--border);
+}
+
