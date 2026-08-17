@@ -37,3 +37,4 @@
 .summary-num { font-size: 2rem; font-weight: 900; color: var(--accent); letter-spacing: -0.04em; }
 .summary-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
 @media (max-width: 600px) { .skills-grid { grid-template-columns: repeat(3, 1fr); } .concepts-grid { grid-template-columns: 1fr; } }
+@media (max-width: 400px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }

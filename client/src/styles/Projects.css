@@ -28,9 +28,12 @@
 .p2 .tech-tag:hover { background: #16a34a; color: #fff; }
 .project-visual { border-top: 1px solid var(--border); padding: 28px 36px; background: var(--bg-secondary); }
 .visual-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 16px; }
-.visual-mockup { background: #0f172a; border-radius: 12px; padding: 20px 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.9; color: #94a3b8; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); }
+.visual-mockup { background: #0f172a; border-radius: 12px; padding: 20px 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.9; color: #94a3b8; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); overflow-x: auto; white-space: pre; }
 .vm-g { color: #34d399; } .vm-y { color: #fbbf24; } .vm-b { color: #60a5fa; } .vm-p { color: #a78bfa; } .vm-r { color: #f87171; }
 .projects-cta { margin-top: 48px; padding: 40px; background: var(--accent-light); border: 1px solid var(--accent-border); border-radius: var(--radius); text-align: center; }
 .cta-title { font-size: 1.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
 .cta-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px; }
-@media (max-width: 640px) { .project-inner, .project-visual { padding: 24px 20px; } }
+@media (max-width: 640px) {
+  .project-inner, .project-visual { padding: 24px 20px; }
+  .projects-cta { padding: 24px 20px; }
+}

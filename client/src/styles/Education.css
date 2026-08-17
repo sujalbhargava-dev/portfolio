@@ -36,3 +36,10 @@
 .goal-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; padding-top: 4px; }
 .goal-text strong { color: var(--text-primary); }
 @media (max-width: 900px) { .edu-layout { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 600px) {
+  .edu-highlight, .courses-card, .goals-card { padding: 20px; }
+  .tl-content { padding-top: 0; }
+  .timeline-item { gap: 16px; padding-bottom: 32px; }
+  .tl-dot { width: 40px; height: 40px; font-size: 0.9rem; }
+  .timeline::before { left: 19px; }
+}

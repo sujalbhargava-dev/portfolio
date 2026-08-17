@@ -437,6 +437,12 @@ nav.nav-hidden {
   margin: 0 auto;
 }
 
+@media (max-width: 600px) {
+  .section {
+    padding: 60px 20px;
+  }
+}
+
 .section-header {
   margin-bottom: 56px;
 }
