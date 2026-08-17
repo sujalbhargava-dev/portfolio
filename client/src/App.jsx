@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import Background from './components/Background'
@@ -31,6 +32,13 @@ function PublicLayout({ children }) {
 
 export default function App() {
   const { isAdmin } = useAuth()
+
+  useEffect(() => {
+    const savedColorTheme = localStorage.getItem('color-theme');
+    if (savedColorTheme) {
+      document.documentElement.setAttribute('data-color-theme', savedColorTheme);
+    }
+  }, []);
 
   return (
     <Routes>

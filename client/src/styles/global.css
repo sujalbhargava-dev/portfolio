@@ -16,6 +16,7 @@
   --accent-hover: #4338ca;
   --accent-light: #eef2ff;
   --accent-border: #c7d2fe;
+  --accent-rgb: 79, 70, 229;
   --border: #e2e8f0;
   --border-hover: #cbd5e1;
   --success: #10b981;
@@ -41,11 +42,93 @@
   --accent-hover: #6366f1;
   --accent-light: rgba(99, 102, 241, 0.12);
   --accent-border: rgba(99, 102, 241, 0.3);
+  --accent-rgb: 129, 140, 248;
   --border: #1e293b;
   --border-hover: #334155;
   --success: #34d399;
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25);
   --card-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* === COLOR THEMES === */
+/* 1. Dark Green (#0A3323) */
+[data-color-theme="dark-green"] {
+  --accent: #0A3323;
+  --accent-hover: #072518;
+  --accent-light: rgba(10, 51, 35, 0.1);
+  --accent-border: rgba(10, 51, 35, 0.2);
+  --accent-rgb: 10, 51, 35;
+}
+[data-theme="dark"][data-color-theme="dark-green"] {
+  --accent: #2e7a57;
+  --accent-hover: #225e41;
+  --accent-light: rgba(46, 122, 87, 0.15);
+  --accent-border: rgba(46, 122, 87, 0.3);
+  --accent-rgb: 46, 122, 87;
+}
+
+/* 2. Moss Green (#839958) */
+[data-color-theme="moss-green"] {
+  --accent: #839958;
+  --accent-hover: #6e8248;
+  --accent-light: rgba(131, 153, 88, 0.1);
+  --accent-border: rgba(131, 153, 88, 0.2);
+  --accent-rgb: 131, 153, 88;
+}
+[data-theme="dark"][data-color-theme="moss-green"] {
+  --accent: #a5be78;
+  --accent-hover: #8fbd4b;
+  --accent-light: rgba(165, 190, 120, 0.15);
+  --accent-border: rgba(165, 190, 120, 0.3);
+  --accent-rgb: 165, 190, 120;
+}
+
+/* 3. Beige (#F7F4D5) */
+[data-color-theme="beige"] {
+  --accent: #d4c86e; /* Darkened beige for visibility */
+  --accent-hover: #b8ac53;
+  --accent-light: rgba(212, 200, 110, 0.1);
+  --accent-border: rgba(212, 200, 110, 0.2);
+  --accent-rgb: 212, 200, 110;
+}
+[data-theme="dark"][data-color-theme="beige"] {
+  --accent: #F7F4D5;
+  --accent-hover: #e0dbb1;
+  --accent-light: rgba(247, 244, 213, 0.15);
+  --accent-border: rgba(247, 244, 213, 0.3);
+  --accent-rgb: 247, 244, 213;
+}
+
+/* 4. Rosy Brown (#D3968C) */
+[data-color-theme="rosy-brown"] {
+  --accent: #D3968C;
+  --accent-hover: #b87b71;
+  --accent-light: rgba(211, 150, 140, 0.1);
+  --accent-border: rgba(211, 150, 140, 0.2);
+  --accent-rgb: 211, 150, 140;
+}
+[data-theme="dark"][data-color-theme="rosy-brown"] {
+  --accent: #e8afa5;
+  --accent-hover: #cf9388;
+  --accent-light: rgba(232, 175, 165, 0.15);
+  --accent-border: rgba(232, 175, 165, 0.3);
+  --accent-rgb: 232, 175, 165;
+}
+
+/* 5. Midnight Green (#105666) */
+[data-color-theme="midnight-green"] {
+  --accent: #105666;
+  --accent-hover: #0c4350;
+  --accent-light: rgba(16, 86, 102, 0.1);
+  --accent-border: rgba(16, 86, 102, 0.2);
+  --accent-rgb: 16, 86, 102;
+}
+[data-theme="dark"][data-color-theme="midnight-green"] {
+  --accent: #2e9eb5;
+  --accent-hover: #227c8f;
+  --accent-light: rgba(46, 158, 181, 0.15);
+  --accent-border: rgba(46, 158, 181, 0.3);
+  --accent-rgb: 46, 158, 181;
 }
 
 /* Background elements */
@@ -220,7 +303,7 @@ ul {
   right: -5%;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.07) 0%, transparent 65%);
   animation: orb-float 10s ease-in-out infinite;
 }
 
@@ -507,7 +590,7 @@ nav.nav-hidden {
 .btn-primary:hover {
   background: var(--accent-hover);
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.4);
 }
 
 .btn-outline {

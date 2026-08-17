@@ -9,7 +9,7 @@
 .skill-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-md); }
 .skill-card:hover::before { opacity: 1; }
 .cat-lang .skill-card:hover { border-color: #818cf8; }
-.cat-lang .skill-card::before { background: linear-gradient(135deg, rgba(79, 70, 229, 0.04), rgba(129, 140, 248, 0.06)); }
+.cat-lang .skill-card::before { background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.04), rgba(129, 140, 248, 0.06)); }
 .cat-lang .cat-icon { background: var(--accent-light); color: var(--accent); }
 .cat-db .skill-card:hover { border-color: #34d399; }
 .cat-db .skill-card::before { background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), rgba(52, 211, 153, 0.06)); }

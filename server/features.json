@@ -1,5 +1,6 @@
 {
   "new-hero": "testing",
   "global-search": "public",
-  "dark-mode": "public"
+  "dark-mode": "public",
+  "color-themes": "public"
 }

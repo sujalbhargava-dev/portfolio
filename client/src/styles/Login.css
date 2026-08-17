@@ -11,6 +11,6 @@
 .login-page .form-input { width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-secondary); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: var(--transition); }
 .login-page .form-input:focus { outline: none; border-color: var(--accent); background: var(--bg); box-shadow: 0 0 0 4px var(--accent-light); }
 .login-page .form-submit { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; background: var(--accent); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); }
-.login-page .form-submit:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); }
+.login-page .form-submit:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2); }
 .forgot-link { font-size: 0.8rem; color: var(--accent); text-decoration: none; float: right; font-weight: 500; }
 .forgot-link:hover { text-decoration: underline; }

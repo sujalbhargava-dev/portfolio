@@ -236,6 +236,79 @@ export default function Dashboard() {
           )}
         </div>
       </div>
+
+      {isFeatureEnabled('color-themes') && (
+        <div className="dash-card" style={{ marginTop: 30 }}>
+          <div className="dash-card-header">
+            <h2 className="dash-card-title">Theme Customization</h2>
+            <span className="badge badge-orange">Testing</span>
+          </div>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            {[
+              { id: 'dark-green', name: 'Dark Green', color: '#0A3323' },
+              { id: 'moss-green', name: 'Moss Green', color: '#839958' },
+              { id: 'beige', name: 'Beige', color: '#F7F4D5' },
+              { id: 'rosy-brown', name: 'Rosy Brown', color: '#D3968C' },
+              { id: 'midnight-green', name: 'Midnight Green', color: '#105666' }
+            ].map(theme => (
+              <button
+                key={theme.id}
+                onClick={() => {
+                  document.documentElement.setAttribute('data-color-theme', theme.id)
+                  localStorage.setItem('color-theme', theme.id)
+                }}
+                style={{
+                  width: 100,
+                  height: 80,
+                  borderRadius: 12,
+                  background: theme.color,
+                  border: '2px solid var(--border)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  padding: 8,
+                  color: theme.id === 'beige' ? '#0f172a' : '#fff',
+                  fontWeight: 600,
+                  fontSize: '0.75rem',
+                  textAlign: 'center',
+                  boxShadow: 'var(--card-shadow)',
+                  transition: 'var(--transition)'
+                }}
+                title={theme.name}
+              >
+                {theme.name}
+              </button>
+            ))}
+            <button
+                onClick={() => {
+                  document.documentElement.removeAttribute('data-color-theme')
+                  localStorage.removeItem('color-theme')
+                }}
+                style={{
+                  width: 100,
+                  height: 80,
+                  borderRadius: 12,
+                  background: 'var(--bg-secondary)',
+                  border: '2px dashed var(--border)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 8,
+                  color: 'var(--text-primary)',
+                  fontWeight: 600,
+                  fontSize: '0.75rem',
+                  textAlign: 'center',
+                  transition: 'var(--transition)'
+                }}
+                title="Reset to Default"
+              >
+                Default
+              </button>
+          </div>
+        </div>
+      )}
       
     </>
   )

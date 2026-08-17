@@ -147,7 +147,7 @@ body.dashboard-body footer {
     justify-content: center;
     margin: 0 auto;
     color: white;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
     position: absolute;
     top: -20px;
     left: 50%;
