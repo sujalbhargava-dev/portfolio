@@ -97,7 +97,7 @@ export default function ManageSkills() {
         <div className="card" style={{ marginBottom: 24 }}>
           <h2 style={{ fontSize: '1.2rem', marginBottom: 16 }}>{formData.id ? 'Edit Skill' : 'Add New Skill'}</h2>
           <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 16 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: 6 }}>Skill Name</label>
                 <input required type="text" className="form-input" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="e.g. React" />
@@ -108,7 +108,7 @@ export default function ManageSkills() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: 6 }}>Category</label>
                 <select className="form-input" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
@@ -139,7 +139,7 @@ export default function ManageSkills() {
       {loading ? (
         <p>Loading skills...</p>
       ) : (
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+        <div className="card" style={{ padding: 0, overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead style={{ background: 'var(--bg-tertiary)', borderBottom: '1px solid var(--border)' }}>
               <tr>

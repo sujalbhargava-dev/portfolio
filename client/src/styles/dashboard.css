@@ -236,6 +236,9 @@ body.dashboard-body footer {
     gap: 24px;
     margin-bottom: 24px;
 }
+.dash-grid.layout-1-2 {
+    grid-template-columns: 1fr 2.5fr;
+}
 
 /* Cards */
 .dash-card {
@@ -656,6 +659,9 @@ body.dashboard-body footer {
 
 /* Mobile Sidebar Drawer */
 @media (max-width: 900px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
     .dash-sidebar {
         position: fixed;
         left: -300px;
@@ -736,5 +742,23 @@ body.dashboard-body footer {
     background: var(--bg-secondary);
     background-image: none;
     border: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+    .dash-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .dash-header-right {
+        width: 100%;
+    }
+    .dash-search {
+        width: 100%;
+        flex: 1;
+    }
+    .dash-list-item {
+        flex-wrap: wrap;
+    }
 }
 

@@ -146,7 +146,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="dash-grid" style={{ gridTemplateColumns: '1fr 2.5fr' }}>
+      <div className="dash-grid layout-1-2">
         <div className="dash-card">
           <div className="dash-card-header">
             <h2 className="dash-card-title">Projects You're Building</h2>
@@ -226,7 +226,7 @@ export default function Dashboard() {
                   <h4 className="dash-list-title" style={{ marginBottom: 4 }}>Feature: <code>{id}</code></h4>
                   <p className="dash-list-desc">Current Status: <strong>{status}</strong></p>
                 </div>
-                <div style={{ display: 'flex', gap: 8 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   <button onClick={() => updateFeature(id, 'testing')} className={`badge ${status === 'testing' ? 'badge-purple' : ''}`} style={{ cursor: 'pointer', border: '1px solid var(--border)', background: status === 'testing' ? 'var(--accent)' : 'transparent', color: status === 'testing' ? 'white' : 'var(--text-muted)' }}>Testing</button>
                   <button onClick={() => updateFeature(id, 'admin')} className={`badge ${status === 'admin' ? 'badge-orange' : ''}`} style={{ cursor: 'pointer', border: '1px solid var(--border)', background: status === 'admin' ? 'var(--warning)' : 'transparent', color: status === 'admin' ? 'white' : 'var(--text-muted)' }}>Admin</button>
                   <button onClick={() => updateFeature(id, 'public')} className={`badge ${status === 'public' ? 'badge-green' : ''}`} style={{ cursor: 'pointer', border: '1px solid var(--border)', background: status === 'public' ? 'var(--success)' : 'transparent', color: status === 'public' ? 'white' : 'var(--text-muted)' }}>Public</button>

@@ -127,7 +127,7 @@ export default function ManageProjects() {
               <textarea required className="form-input" style={{ minHeight: 80, resize: 'vertical' }} value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Project description..."></textarea>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', marginBottom: 6 }}>Project Type</label>
                 <input type="text" className="form-input" value={formData.project_type} onChange={e => setFormData({...formData, project_type: e.target.value})} placeholder="e.g. Web App" />
@@ -164,7 +164,7 @@ export default function ManageProjects() {
       ) : (
         <div style={{ display: 'grid', gap: 16 }}>
           {projects.map(project => (
-            <div key={project.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div key={project.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{project.title}</h3>
