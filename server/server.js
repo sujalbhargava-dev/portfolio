@@ -156,7 +156,7 @@ app.post('/api/features', async (req, res) => {
 // --- SKILLS API ---
 app.get('/api/skills', async (req, res) => {
   const { data: skills, error } = await supabase.from('skills').select('*').order('sort_order', { ascending: true });
-  if (error) return res.status(500).json({ error: 'Database error' });
+  if (error) return res.status(500).json({ error: error.message || 'Database error' });
   res.json({ success: true, skills });
 });
 

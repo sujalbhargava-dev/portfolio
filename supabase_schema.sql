@@ -19,9 +19,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Insert default admin user (password is 'sujal', hashed with bcrypt)
 INSERT INTO users (email, password) 
-VALUES ('sujalbhargava2341@gmail.com', '$2b$10$YourHashedPasswordHerePleaseUpdate')
+VALUES ('sujalbhargava2341@gmail.com', '$2b$10$PlVNh/Ryz5L0VOHmhyG0iuvqUPBVbfIsiHPemaUogZjcmvGQSzeq2')
 ON CONFLICT (email) DO NOTHING;
--- Note: bcrypt hashes generate dynamically, we will handle default user creation from the backend to ensure correct hashing if needed, or you can just register via your frontend.
 
 -- 3. Skills Table
 CREATE TABLE IF NOT EXISTS skills (
