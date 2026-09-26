@@ -6,16 +6,8 @@ import LoginActivityChart from '../components/LoginActivityChart'
 import CalendarWidget from '../components/CalendarWidget'
 
 export default function Dashboard() {
-  const [messages, setMessages] = useState([])
   const { features, isFeatureEnabled } = useFeatureFlags()
   const [profileImgSrc, setProfileImgSrc] = useState('/profile.jpg')
-
-  useEffect(() => {
-    fetch('/api/messages')
-      .then(res => res.json())
-      .then(data => { if (data.success) setMessages(data.messages || []) })
-      .catch(() => {})
-  }, [])
 
   useEffect(() => {
     const handleUpdate = () => setProfileImgSrc(`/profile.jpg?t=${Date.now()}`);
@@ -62,11 +54,17 @@ export default function Dashboard() {
         <div className="dash-header-right">
           {isFeatureEnabled('global-search') && <SearchBar />}
           {isFeatureEnabled('dark-mode') && <ThemeToggle />}
-          <div className="desktop-only-profile" style={{ position: 'relative', display: 'inline-block' }}>
-            <label htmlFor="headerProfilePhoto" style={{ cursor: 'pointer', display: 'block', position: 'relative' }} title="Upload new profile picture">
-              <img src={profileImgSrc} alt="Profile" className="dash-profile" onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=SB&background=4f46e5&color=fff&size=40' }} />
-            </label>
-            <input type="file" id="headerProfilePhoto" accept="image/*" style={{ display: 'none' }} onChange={handlePhotoUpload} />
+          <div className="desktop-only-profile" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <a href="/messages" style={{ color: 'var(--text-secondary)', position: 'relative', display: 'flex', alignItems: 'center', transition: 'var(--transition)' }}>
+              <i className="fa-regular fa-bell" style={{ fontSize: '1.25rem' }}></i>
+              <span style={{ position: 'absolute', top: 0, right: 0, width: 8, height: 8, background: 'var(--accent)', borderRadius: '50%', border: '2px solid var(--bg)' }}></span>
+            </a>
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <label htmlFor="headerProfilePhoto" style={{ cursor: 'pointer', display: 'block', position: 'relative' }} title="Upload new profile picture">
+                <img src={profileImgSrc} alt="Profile" className="dash-profile" onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=SB&background=4f46e5&color=fff&size=40' }} />
+              </label>
+              <input type="file" id="headerProfilePhoto" accept="image/*" style={{ display: 'none' }} onChange={handlePhotoUpload} />
+            </div>
           </div>
         </div>
       </header>
@@ -153,73 +151,34 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="dash-grid layout-1-2">
-        <div className="dash-card">
-          <div className="dash-card-header">
-            <h2 className="dash-card-title">Projects You're Building</h2>
-            <a href="#" className="dash-card-action">Active <i className="fa-solid fa-chevron-down"></i></a>
+      <div className="dash-card">
+        <div className="dash-card-header">
+          <h2 className="dash-card-title">Projects You're Building</h2>
+          <a href="#" className="dash-card-action">Active <i className="fa-solid fa-chevron-down"></i></a>
+        </div>
+        
+        <div className="progress-item">
+          <div className="mini-card-icon icon-bg-purple" style={{ margin: 0 }}><i className="fa-solid fa-desktop"></i></div>
+          <div className="progress-info">
+            <h4 style={{ margin: '0 0 4px 0', fontSize: '0.95rem' }}>Portfolio Dashboard</h4>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}><img src={profileImgSrc} style={{ width: 16, height: 16, borderRadius: '50%', verticalAlign: 'middle', marginRight: 4 }} onError={(e) => e.target.style.display='none'} />Sujal Bhargava</p>
           </div>
-          
-          <div className="progress-item">
-            <div className="mini-card-icon icon-bg-purple" style={{ margin: 0 }}><i className="fa-solid fa-desktop"></i></div>
-            <div className="progress-info">
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '0.95rem' }}>Portfolio Dashboard</h4>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}><img src={profileImgSrc} style={{ width: 16, height: 16, borderRadius: '50%', verticalAlign: 'middle', marginRight: 4 }} onError={(e) => e.target.style.display='none'} />Sujal Bhargava</p>
-            </div>
-            <div style={{ textAlign: 'right', width: 100 }}>
-              <div className="progress-header"><span style={{ color: 'var(--text-muted)' }}>Completion</span></div>
-            </div>
-            <div className="circular-progress" style={{ background: 'conic-gradient(var(--accent) 0% 90%, var(--border) 90% 100%)' }}><span>90%</span></div>
+          <div style={{ textAlign: 'right', width: 100 }}>
+            <div className="progress-header"><span style={{ color: 'var(--text-muted)' }}>Completion</span></div>
           </div>
-
-          <div className="progress-item" style={{ border: 'none', padding: 0 }}>
-            <div className="mini-card-icon icon-bg-orange" style={{ margin: 0 }}><i className="fa-solid fa-server"></i></div>
-            <div className="progress-info">
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '0.95rem' }}>Node.js API</h4>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}><img src={profileImgSrc} style={{ width: 16, height: 16, borderRadius: '50%', verticalAlign: 'middle', marginRight: 4 }} onError={(e) => e.target.style.display='none'} />Sujal Bhargava</p>
-            </div>
-            <div style={{ textAlign: 'right', width: 100 }}>
-              <div className="progress-header"><span style={{ color: 'var(--text-muted)' }}>Completion</span></div>
-            </div>
-            <div className="circular-progress" style={{ background: 'conic-gradient(var(--success) 0% 100%, var(--border) 100% 100%)' }}><span>100%</span></div>
-          </div>
+          <div className="circular-progress" style={{ background: 'conic-gradient(var(--accent) 0% 90%, var(--border) 90% 100%)' }}><span>90%</span></div>
         </div>
 
-        <div className="dash-card">
-          <div className="dash-card-header">
-            <h2 className="dash-card-title">Recent Messages</h2>
-            <i className="fa-solid fa-plus" style={{ color: 'var(--accent)', background: 'var(--accent-light)', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', cursor: 'pointer' }}></i>
+        <div className="progress-item" style={{ border: 'none', padding: 0 }}>
+          <div className="mini-card-icon icon-bg-orange" style={{ margin: 0 }}><i className="fa-solid fa-server"></i></div>
+          <div className="progress-info">
+            <h4 style={{ margin: '0 0 4px 0', fontSize: '0.95rem' }}>Node.js API</h4>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-muted)' }}><img src={profileImgSrc} style={{ width: 16, height: 16, borderRadius: '50%', verticalAlign: 'middle', marginRight: 4 }} onError={(e) => e.target.style.display='none'} />Sujal Bhargava</p>
           </div>
-          <div className="dash-list">
-            {messages.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: 20, color: 'var(--text-muted)' }}>No recent messages.</div>
-            ) : (
-              messages.slice(0, 4).map((msg, index) => {
-                const colors = ['badge-purple', 'badge-green', 'badge-orange', 'badge-blue']
-                const badgeColor = colors[index % colors.length]
-                const date = new Date(msg.timestamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', hour: 'numeric', minute: '2-digit' })
-                return (
-                  <div key={msg.id} className="dash-list-item" style={{ alignItems: 'flex-start', padding: 16 }}>
-                    <div className="dash-list-icon" style={{ flexShrink: 0 }}><i className="fa-regular fa-envelope"></i></div>
-                    <div className="dash-list-content" style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
-                        <h4 className="dash-list-title" style={{ margin: 0, fontSize: '0.95rem', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-                          {msg.name}
-                          <span className={`badge ${badgeColor}`} style={{ fontSize: '0.65rem', padding: '2px 6px' }}>New</span>
-                        </h4>
-                        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, paddingTop: 2 }}>{date}</span>
-                      </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        &lt;{msg.email}&gt;
-                      </div>
-                      <p style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)', margin: '6px 0 2px 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{msg.subject}</p>
-                      <p className="dash-list-desc" style={{ color: 'var(--text-secondary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', margin: 0, whiteSpace: 'normal', lineHeight: 1.4 }}>{msg.message}</p>
-                    </div>
-                  </div>
-                )
-              })
-            )}
+          <div style={{ textAlign: 'right', width: 100 }}>
+            <div className="progress-header"><span style={{ color: 'var(--text-muted)' }}>Completion</span></div>
           </div>
+          <div className="circular-progress" style={{ background: 'conic-gradient(var(--success) 0% 100%, var(--border) 100% 100%)' }}><span>100%</span></div>
         </div>
       </div>
       

@@ -57,7 +57,11 @@ export default function DashboardLayout() {
       {/* Mobile Header */}
       <div className="mobile-header">
         <i className="fa-solid fa-bars mobile-hamburger" onClick={() => setMobileOpen(true)}></i>
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <NavLink to="/messages" style={{ color: 'var(--text-primary)', position: 'relative', display: 'flex', alignItems: 'center' }}>
+            <i className="fa-regular fa-bell" style={{ fontSize: '1.2rem' }}></i>
+            <span style={{ position: 'absolute', top: '-2px', right: '-2px', width: 8, height: 8, background: 'var(--accent)', borderRadius: '50%' }}></span>
+          </NavLink>
           <label htmlFor="mobileHeaderProfilePhoto" style={{ cursor: 'pointer', display: 'block' }} title="Upload new profile picture">
             <img 
               src={profileImgSrc} 
