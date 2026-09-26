@@ -13,10 +13,10 @@ export default function DashboardLayout() {
     return saved === null ? true : saved === 'true'
   })
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [profileImgSrc, setProfileImgSrc] = useState('/profile.jpg')
+  const [profileImgSrc, setProfileImgSrc] = useState('/api/profile.jpg')
 
   useEffect(() => {
-    const handleUpdate = () => setProfileImgSrc(`/profile.jpg?t=${Date.now()}`);
+    const handleUpdate = () => setProfileImgSrc(`/api/profile.jpg?t=${Date.now()}`);
     window.addEventListener('profileUpdated', handleUpdate);
     return () => window.removeEventListener('profileUpdated', handleUpdate);
   }, []);
@@ -30,7 +30,7 @@ export default function DashboardLayout() {
       const res = await fetch('/api/upload-profile', { method: 'POST', body: formData })
       const data = await res.json()
       if (data.success) {
-        setProfileImgSrc(`/profile.jpg?t=${Date.now()}`)
+        setProfileImgSrc(`/api/profile.jpg?t=${Date.now()}`)
         window.dispatchEvent(new Event('profileUpdated'))
       } else {
         alert(data.error)

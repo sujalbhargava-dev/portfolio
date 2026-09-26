@@ -40,7 +40,7 @@ export default function Home() {
             </div>
             <div className="name-wrapper">
               <img
-                src="/profile.jpg"
+                src="/api/profile.jpg"
                 alt="Sujal Bhargava"
                 className="hero-avatar"
                 onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=Sujal+Bhargava&background=4f46e5&color=fff&size=150' }}

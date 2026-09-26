@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..')));
 
 // Redirect profile.jpg requests to the Supabase public storage URL
-app.get('/profile.jpg', (req, res) => {
+app.get('/api/profile.jpg', (req, res) => {
   const { data } = supabase.storage.from('portfolio-assets').getPublicUrl('profile.jpg');
   if (data && data.publicUrl) {
     res.redirect(data.publicUrl);

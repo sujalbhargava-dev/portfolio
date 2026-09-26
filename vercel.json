@@ -6,10 +6,6 @@
       "destination": "https://portfolio-sujal.onrender.com/api/$1"
     },
     {
-      "source": "/profile.jpg",
-      "destination": "https://portfolio-sujal.onrender.com/profile.jpg"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
