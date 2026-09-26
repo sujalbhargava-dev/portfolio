@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://YOUR_RENDER_URL.onrender.com/api/$1"
+      "destination": "https://portfolio-sujal.onrender.com/api/$1"
     },
     {
       "source": "/(.*)",
