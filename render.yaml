@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: sujal-portfolio-backend
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: ~20.0.0
+      # You will need to provide the actual values for these in the Render dashboard
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
