@@ -13,6 +13,32 @@ export default function DashboardLayout() {
     return saved === null ? true : saved === 'true'
   })
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [profileImgSrc, setProfileImgSrc] = useState('/profile.jpg')
+
+  useEffect(() => {
+    const handleUpdate = () => setProfileImgSrc(`/profile.jpg?t=${Date.now()}`);
+    window.addEventListener('profileUpdated', handleUpdate);
+    return () => window.removeEventListener('profileUpdated', handleUpdate);
+  }, []);
+
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const formData = new FormData()
+    formData.append('profilePhoto', file)
+    try {
+      const res = await fetch('/api/upload-profile', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (data.success) {
+        setProfileImgSrc(`/profile.jpg?t=${Date.now()}`)
+        window.dispatchEvent(new Event('profileUpdated'))
+      } else {
+        alert(data.error)
+      }
+    } catch {
+      alert('Upload failed')
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('sidebarCollapsed', collapsed)
@@ -29,14 +55,19 @@ export default function DashboardLayout() {
   return (
     <div className="dashboard-layout">
       {/* Mobile Header */}
-      <div className="mobile-header" style={{ display: 'none' }}>
-        <NavLink to="/" className="dash-logo" style={{ textDecoration: 'none' }}>
-          <span>
-            <i className="fa-solid fa-code" style={{ color: 'var(--accent)' }}></i>{' '}
-            <span style={{ color: 'var(--text-primary)', fontWeight: 800 }}>Sujal.</span>
-          </span>
-        </NavLink>
+      <div className="mobile-header">
         <i className="fa-solid fa-bars mobile-hamburger" onClick={() => setMobileOpen(true)}></i>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+          <label htmlFor="mobileHeaderProfilePhoto" style={{ cursor: 'pointer', display: 'block' }} title="Upload new profile picture">
+            <img 
+              src={profileImgSrc} 
+              alt="Sujal" 
+              style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--border)', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} 
+              onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=SB&background=4f46e5&color=fff&size=40' }} 
+            />
+          </label>
+          <input type="file" id="mobileHeaderProfilePhoto" accept="image/*" style={{ display: 'none' }} onChange={handlePhotoUpload} />
+        </div>
       </div>
 
       {/* Sidebar Overlay */}

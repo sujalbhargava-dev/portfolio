@@ -17,6 +17,12 @@ export default function Dashboard() {
       .catch(() => {})
   }, [])
 
+  useEffect(() => {
+    const handleUpdate = () => setProfileImgSrc(`/profile.jpg?t=${Date.now()}`);
+    window.addEventListener('profileUpdated', handleUpdate);
+    return () => window.removeEventListener('profileUpdated', handleUpdate);
+  }, [])
+
   const handlePhotoUpload = async (e) => {
     const file = e.target.files[0]
     if (!file) return
@@ -27,6 +33,7 @@ export default function Dashboard() {
       const data = await res.json()
       if (data.success) {
         setProfileImgSrc(`/profile.jpg?t=${Date.now()}`)
+        window.dispatchEvent(new Event('profileUpdated'))
       } else {
         alert(data.error)
       }
@@ -55,7 +62,7 @@ export default function Dashboard() {
         <div className="dash-header-right">
           {isFeatureEnabled('global-search') && <SearchBar />}
           {isFeatureEnabled('dark-mode') && <ThemeToggle />}
-          <div style={{ position: 'relative', display: 'inline-block' }}>
+          <div className="desktop-only-profile" style={{ position: 'relative', display: 'inline-block' }}>
             <label htmlFor="headerProfilePhoto" style={{ cursor: 'pointer', display: 'block', position: 'relative' }} title="Upload new profile picture">
               <img src={profileImgSrc} alt="Profile" className="dash-profile" onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=SB&background=4f46e5&color=fff&size=40' }} />
             </label>
@@ -194,15 +201,20 @@ export default function Dashboard() {
                 return (
                   <div key={msg.id} className="dash-list-item" style={{ alignItems: 'flex-start', padding: 16 }}>
                     <div className="dash-list-icon" style={{ flexShrink: 0 }}><i className="fa-regular fa-envelope"></i></div>
-                    <div className="dash-list-content" style={{ minWidth: 0 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
-                        <h4 className="dash-list-title" style={{ margin: 0, fontSize: '1rem' }}>{msg.name} <span style={{ fontWeight: 400, fontSize: '0.85rem', color: 'var(--text-muted)', marginLeft: 8 }}>&lt;{msg.email}&gt;</span></h4>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', marginLeft: 12 }}>{date}</span>
+                    <div className="dash-list-content" style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
+                        <h4 className="dash-list-title" style={{ margin: 0, fontSize: '0.95rem', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+                          {msg.name}
+                          <span className={`badge ${badgeColor}`} style={{ fontSize: '0.65rem', padding: '2px 6px' }}>New</span>
+                        </h4>
+                        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', flexShrink: 0, paddingTop: 2 }}>{date}</span>
                       </div>
-                      <p style={{ fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-primary)', margin: '0 0 6px 0' }}>{msg.subject}</p>
-                      <p className="dash-list-desc" style={{ color: 'var(--text-secondary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', margin: 0 }}>{msg.message}</p>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        &lt;{msg.email}&gt;
+                      </div>
+                      <p style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)', margin: '6px 0 2px 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{msg.subject}</p>
+                      <p className="dash-list-desc" style={{ color: 'var(--text-secondary)', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', margin: 0, whiteSpace: 'normal', lineHeight: 1.4 }}>{msg.message}</p>
                     </div>
-                    <span className={`badge ${badgeColor}`} style={{ marginLeft: 12, flexShrink: 0 }}>New</span>
                   </div>
                 )
               })
