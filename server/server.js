@@ -223,12 +223,14 @@ app.delete('/api/projects/:id', async (req, res) => {
   res.json({ success: true });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running at:`);
-  console.log(`  Local:   http://localhost:${PORT}`);
-  console.log(`  Network: http://${getLocalIP()}:${PORT}`);
-  console.log(`  Supabase Database Mode`);
-});
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at:`);
+    console.log(`  Local:   http://localhost:${PORT}`);
+    console.log(`  Network: http://${getLocalIP()}:${PORT}`);
+    console.log(`  Supabase Database Mode`);
+  });
+}
 
 function getLocalIP() {
   const interfaces = os.networkInterfaces();
