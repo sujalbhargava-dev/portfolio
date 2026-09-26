@@ -6,7 +6,7 @@
       "destination": "https://portfolio-sujal.onrender.com/api/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/([^.]*)",
       "destination": "/index.html"
     }
   ]
