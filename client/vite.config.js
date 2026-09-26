@@ -9,6 +9,10 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       },
+      '/profile.jpg': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
     },
   },
 })
