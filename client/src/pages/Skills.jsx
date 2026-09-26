@@ -16,7 +16,7 @@ export default function Skills() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/skills')
+    fetch('/api/skills')
       .then(res => res.json())
       .then(data => {
         if (data.success) setSkills(data.skills)

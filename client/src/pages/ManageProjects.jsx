@@ -23,7 +23,7 @@ export default function ManageProjects() {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/projects')
+      const res = await fetch('/api/projects')
       const data = await res.json()
       if (data.success) {
         setProjects(data.projects)
@@ -50,7 +50,7 @@ export default function ManageProjects() {
     if (!window.confirm('Are you sure you want to delete this project?')) return
 
     try {
-      const res = await fetch(`http://localhost:3000/api/projects/${id}`, { method: 'DELETE' })
+      const res = await fetch(`/api/projects/${id}`, { method: 'DELETE' })
       const data = await res.json()
       if (data.success) {
         setProjects(projects.filter(p => p.id !== id))
@@ -71,7 +71,7 @@ export default function ManageProjects() {
     }
 
     const isEditing = !!formData.id
-    const url = isEditing ? `http://localhost:3000/api/projects/${formData.id}` : 'http://localhost:3000/api/projects'
+    const url = isEditing ? `/api/projects/${formData.id}` : '/api/projects'
     const method = isEditing ? 'PUT' : 'POST'
 
     try {

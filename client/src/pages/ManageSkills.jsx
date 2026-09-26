@@ -21,7 +21,7 @@ export default function ManageSkills() {
 
   const fetchSkills = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/skills')
+      const res = await fetch('/api/skills')
       const data = await res.json()
       if (data.success) {
         setSkills(data.skills)
@@ -44,7 +44,7 @@ export default function ManageSkills() {
     if (!window.confirm('Are you sure you want to delete this skill?')) return
 
     try {
-      const res = await fetch(`http://localhost:3000/api/skills/${id}`, { method: 'DELETE' })
+      const res = await fetch(`/api/skills/${id}`, { method: 'DELETE' })
       const data = await res.json()
       if (data.success) {
         setSkills(skills.filter(s => s.id !== id))
@@ -58,7 +58,7 @@ export default function ManageSkills() {
     e.preventDefault()
     
     const isEditing = !!formData.id
-    const url = isEditing ? `http://localhost:3000/api/skills/${formData.id}` : 'http://localhost:3000/api/skills'
+    const url = isEditing ? `/api/skills/${formData.id}` : '/api/skills'
     const method = isEditing ? 'PUT' : 'POST'
 
     try {
