@@ -110,6 +110,18 @@ app.post('/api/login', async (req, res) => {
   }
 
   const { data: users, error } = await supabase.from('users').select('*').eq('email', email);
+  
+  // If the admin user doesn't exist yet (e.g. fresh deployment), auto-register them
+  if ((error || !users || users.length === 0) && email === 'sujalbhargava2341@gmail.com') {
+    bcrypt.hash(password, 10, async (err, hash) => {
+      if (err) return res.status(500).json({ error: 'Internal server error.' });
+      const { error: insertErr } = await supabase.from('users').insert([{ email, password: hash }]);
+      if (insertErr) return res.status(500).json({ error: 'Failed to create admin account.' });
+      return res.json({ success: true, message: 'Admin account created and logged in', isAdmin: true });
+    });
+    return;
+  }
+
   if (error || !users || users.length === 0) {
     return res.status(401).json({ error: 'Invalid email or password.' });
   }
