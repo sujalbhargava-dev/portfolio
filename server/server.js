@@ -23,7 +23,11 @@ const upload = multer({
 });
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..')));
+
+// Basic health check route for Render
+app.get('/', (req, res) => {
+  res.send('API Backend is running properly on Render');
+});
 
 // Redirect profile.jpg requests to the Supabase public storage URL
 app.get('/api/profile.jpg', (req, res) => {
