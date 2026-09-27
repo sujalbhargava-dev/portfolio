@@ -3,7 +3,7 @@
   "outputDirectory": "client/dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/",
       "destination": "https://portfolio-sujal.onrender.com/api/$1"
     },
     {
