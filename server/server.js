@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
   res.send('API Backend is running properly on Render');
 });
 
+// Health endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // Redirect profile.jpg requests to the Supabase public storage URL
 app.get('/api/profile.jpg', (req, res) => {
   const { data } = supabase.storage.from('portfolio-assets').getPublicUrl('profile.jpg');

@@ -7,7 +7,7 @@ services:
     startCommand: npm start
     envVars:
       - key: NODE_VERSION
-        value: ~20.0.0
+        value: 24.x
       # You will need to provide the actual values for these in the Render dashboard
       - key: SUPABASE_URL
         sync: false
