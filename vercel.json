@@ -1,5 +1,8 @@
 {
+  "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
+  "installCommand": "echo 'skipping root install'",
+  "framework": null,
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -11,3 +14,4 @@
     }
   ]
 }
+
